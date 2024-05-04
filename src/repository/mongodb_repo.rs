@@ -2,16 +2,18 @@ use std::env;
 extern crate dotenv;
 use dotenv::dotenv;
 
+use crate::models::permission_model::Permission;
 use crate::models::user_model::User;
 use mongodb::{
     bson::doc,
     bson::extjson::de::Error,
-    //    results::InsertOneResult,
     sync::{Client, Collection},
+    //    results::InsertOneResult,
 };
 
 pub struct MongoRepo {
-    col: Collection<User>,
+    usercol: Collection<User>,
+    permcol: Collection<Permission>,
 }
 
 impl MongoRepo {
@@ -23,8 +25,9 @@ impl MongoRepo {
         };
         let client = Client::with_uri_str(uri).unwrap();
         let db = client.database("rocketchat");
-        let col: Collection<User> = db.collection("users");
-        MongoRepo { col }
+        let usercol: Collection<User> = db.collection("users");
+        let permcol: Collection<Permission> = db.collection("rocketchat_permissions");
+        MongoRepo { usercol, permcol }
     }
 
     /*
@@ -48,7 +51,7 @@ impl MongoRepo {
         // let obj_id = ObjectId::parse_str(id).unwrap();
         let filter = doc! {"_id": id};
         let user_detail = self
-            .col
+            .usercol
             .find_one(filter, None)
             .ok()
             .expect("Error getting user's detail");
@@ -57,11 +60,23 @@ impl MongoRepo {
 
     pub fn get_all_users(&self) -> Result<Vec<User>, Error> {
         let cursors = self
-            .col
+            .usercol
             .find(None, None)
             .ok()
             .expect("Error getting list of users");
         let users = cursors.map(|doc| doc.unwrap()).collect();
         Ok(users)
+    }
+
+    pub fn get_all_permissions(&self) -> Result<Vec<Permission>, Error> {
+        let filter =
+            doc! { "$nor": [ { "roles": { "$exists": false } }, { "roles": { "$size": 0 } } ] };
+        let cursors = self
+            .permcol
+            .find(filter, None)
+            .ok()
+            .expect("Error getting list of permissions");
+        let permissions = cursors.map(|doc| doc.unwrap()).collect();
+        Ok(permissions)
     }
 }

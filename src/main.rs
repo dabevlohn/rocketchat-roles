@@ -6,6 +6,7 @@ mod repository;
 extern crate rocket;
 use rocket::{get, http::Status, serde::json::Json};
 
+use api::permission_api::get_all_permissions;
 use api::user_api::{get_all_users, get_user};
 use repository::mongodb_repo::MongoRepo;
 
@@ -21,6 +22,7 @@ fn rocket() -> _ {
         .manage(db)
         .mount("/", routes![get_user])
         .mount("/", routes![get_all_users])
+        .mount("/", routes![get_all_permissions])
         .mount("/", routes![hello])
 }
 /*
