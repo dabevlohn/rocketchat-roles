@@ -1,15 +1,20 @@
 [package]
 name = "mongoman"
-version = "0.1.0"
+version = "0.1.1"
 edition = "2021"
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
-# mongodb = "2.1"
-mongodb = "2.8.2"
+# tokio = "1"
+# futures = "0.3"
+rocket = {version = "0.5.0-rc.2", features = ["json"]}
+serde = { version = "1.0.136", features = ["derive"] }
+dotenv = "0.15.0"
 bson = { version = "2", features = ["chrono-0_4"] } # Needed for using chrono datetime in doc
 chrono = "0.4" # Used for setting DateTimes
-tokio = "1"
-futures = "0.3"
-serde = { version = "1.0", features = ["derive"] }
+
+[dependencies.mongodb]
+version = "2.8.2"
+default-features = false
+features = ["sync"] 
