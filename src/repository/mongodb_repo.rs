@@ -3,6 +3,7 @@ extern crate dotenv;
 use dotenv::dotenv;
 
 use crate::models::permission_model::Permission;
+use crate::models::role_model::Role;
 use crate::models::user_model::User;
 use mongodb::{
     bson::doc,
@@ -13,6 +14,7 @@ use mongodb::{
 
 pub struct MongoRepo {
     usercol: Collection<User>,
+    rolecol: Collection<Role>,
     permcol: Collection<Permission>,
 }
 
@@ -26,8 +28,13 @@ impl MongoRepo {
         let client = Client::with_uri_str(uri).unwrap();
         let db = client.database("rocketchat");
         let usercol: Collection<User> = db.collection("users");
+        let rolecol: Collection<Role> = db.collection("rocketchat_roles");
         let permcol: Collection<Permission> = db.collection("rocketchat_permissions");
-        MongoRepo { usercol, permcol }
+        MongoRepo {
+            usercol,
+            permcol,
+            rolecol,
+        }
     }
 
     /*
@@ -66,6 +73,16 @@ impl MongoRepo {
             .expect("Error getting list of users");
         let users = cursors.map(|doc| doc.unwrap()).collect();
         Ok(users)
+    }
+
+    pub fn get_all_roles(&self) -> Result<Vec<Role>, Error> {
+        let cursors = self
+            .rolecol
+            .find(None, None)
+            .ok()
+            .expect("Error getting list of roles");
+        let roles = cursors.map(|doc| doc.unwrap()).collect();
+        Ok(roles)
     }
 
     pub fn get_all_permissions(&self) -> Result<Vec<Permission>, Error> {
