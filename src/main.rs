@@ -5,6 +5,7 @@
 use chrono::Utc;
 use futures::stream::TryStreamExt;
 use mongodb::{
+    // bson::{oid::ObjectId, Bson},
     bson::doc,
     options::{ClientOptions, FindOptions},
     Client,
@@ -17,12 +18,35 @@ use tokio;
 #[derive(Debug, Serialize, Deserialize)]
 struct Session {
     host: String,
-    userId: String,
-    loginToken: String,
     roles: Vec<String>,
-    mostImportantRole: String,
-    #[serde(with = "bson::serde_helpers::chrono_datetime_as_bson_datetime")]
-    loginAt: chrono::DateTime<Utc>,
+    #[serde(rename = "userId")]
+    user_id: String,
+    #[serde(rename = "loginToken")]
+    login_token: String,
+    #[serde(rename = "mostImportantRole")]
+    most_important_role: String,
+    #[serde(
+        rename = "loginAt",
+        with = "bson::serde_helpers::chrono_datetime_as_bson_datetime"
+    )]
+    login_at: chrono::DateTime<Utc>,
+}
+
+#[derive(Debug, Serialize, Deserialize)]
+struct Role {
+    #[serde(rename = "_id")]
+    id: String,
+    // #[serde(rename = "_id", skip_serializing_if = "Option::is_none")]
+    // id: Option<ObjectId>,
+    scope: String,
+    name: String,
+}
+
+#[derive(Debug, Serialize, Deserialize)]
+struct Permission {
+    #[serde(rename = "_id")]
+    id: String,
+    roles: Vec<String>,
 }
 
 #[tokio::main]
@@ -51,7 +75,8 @@ async fn main() -> Result<(), Box<dyn Error>> {
     //    println!("{}", collection_name);
     // }
 
-    let typed_collection = db.collection::<Session>("rocketchat_sessions");
+    println!("---- Sessions ----");
+    let session_collection = db.collection::<Session>("rocketchat_sessions");
 
     /*
     let sessions = vec![
@@ -68,20 +93,46 @@ async fn main() -> Result<(), Box<dyn Error>> {
     typed_collection.insert_many(sessions, None).await?;
     */
 
-    let filter = doc! { "host": "localhost:3000"  };
-    let find_options = FindOptions::builder().sort(doc! { "_id": 1 }).build();
-    let mut cursor = typed_collection.find(filter, find_options).await?;
+    let mut filter = doc! { "host": "localhost:3000"  };
+    let mut find_options = FindOptions::builder().sort(doc! { "_id": 1 }).build();
+    let mut cursor = session_collection.find(filter, find_options).await?;
 
     // Iterate over the results of the cursor.
     while let Some(session) = cursor.try_next().await? {
         println!(
             "userId: {}, loginToken: {}, loginAt: {}, role: {}, roles: {:?}",
-            session.userId,
-            session.loginToken,
-            session.loginAt,
-            session.mostImportantRole,
+            session.user_id,
+            session.login_token,
+            session.login_at,
+            session.most_important_role,
             session.roles
         );
+    }
+
+    println!("---- Roles ----");
+    let role_collection = db.collection::<Role>("rocketchat_roles");
+    filter = doc! { "protected": true };
+    find_options = FindOptions::builder()
+        .sort(doc! { "_updatedAt": 1 })
+        .build();
+    let mut cursor = role_collection.find(filter, find_options).await?;
+
+    while let Some(role) = cursor.try_next().await? {
+        println!("name: {}, scope: {}", role.name, role.scope);
+    }
+
+    println!("---- Permissions ----");
+    let permission_collection = db.collection::<Permission>("rocketchat_permissions");
+    // filter = doc! { "roles": { "$exists": true } };
+    filter = doc! { "$nor": [ { "roles": { "$exists": false } }, { "roles": { "$size": 0 } } ] };
+    find_options = FindOptions::builder()
+        .sort(doc! { "_updatedAt": 1 })
+        .build();
+    let mut cursor = permission_collection.find(filter, find_options).await?;
+    // let mut cursor = permission_collection.find(None, find_options).await?;
+
+    while let Some(permission) = cursor.try_next().await? {
+        println!("id: {}, roles: {:?}", permission.id, permission.roles);
     }
 
     Ok(())
