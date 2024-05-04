@@ -49,6 +49,16 @@ struct Permission {
     roles: Vec<String>,
 }
 
+#[derive(Debug, Serialize, Deserialize)]
+struct User {
+    #[serde(rename = "_id")]
+    id: String,
+    roles: Vec<String>,
+    status: String,
+    username: String,
+    active: bool,
+}
+
 #[tokio::main]
 async fn main() -> Result<(), Box<dyn Error>> {
     // Load the MongoDB connection string from an environment variable:
@@ -106,6 +116,21 @@ async fn main() -> Result<(), Box<dyn Error>> {
             session.login_at,
             session.most_important_role,
             session.roles
+        );
+    }
+
+    println!("---- Users ----");
+    let user_collection = db.collection::<User>("users");
+    filter = doc! { "active": true };
+    find_options = FindOptions::builder()
+        .sort(doc! { "_updatedAt": 1 })
+        .build();
+    let mut cursor = user_collection.find(filter, find_options).await?;
+
+    while let Some(user) = cursor.try_next().await? {
+        println!(
+            "id: {}, name: {}, roles: {:?}",
+            user.id, user.username, user.roles
         );
     }
 
