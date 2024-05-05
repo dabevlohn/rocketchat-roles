@@ -8,22 +8,13 @@ extern crate rocket;
 #[cfg(test)]
 mod tests;
 
-use api::permission_api::get_all_permissions;
-use api::role_api::get_all_roles;
-use api::user_api::{get_all_users, get_user};
-use repository::localdb_repo::LocalRepo;
-use repository::mongodb_repo::MongoRepo;
-use rocket::fairing::AdHoc;
-use rocket::serde::Deserialize;
+use api::{
+    permission_api::get_all_permissions,
+    role_api::get_all_roles,
+    user_api::{get_all_users, get_user},
+};
+use repository::{localdb_repo::LocalRepo, mongodb_repo::MongoRepo};
 use rocket::{get, http::Status, serde::json::Json};
-
-#[derive(Debug, Deserialize)]
-#[serde(crate = "rocket::serde")]
-#[allow(dead_code)]
-struct AppConfig {
-    key: String,
-    port: u16,
-}
 
 #[get("/")]
 fn hello() -> Result<Json<String>, Status> {
@@ -41,7 +32,6 @@ fn rocket() -> _ {
         .mount("/", routes![get_all_roles])
         .mount("/", routes![get_all_permissions])
         .mount("/", routes![hello])
-        .attach(AdHoc::config::<AppConfig>())
 }
 
 /*
