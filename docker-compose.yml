@@ -1,0 +1,12 @@
+version: "3"
+
+services:
+  rocketmongoman:
+    build: ./
+    # image: mongoman-rocketmongoman:latest
+    ports:
+      - "8000:8000"
+    environment:
+      MONGOURI: "mongodb://mongodb:27017/rocketchat?replicaSet=rs0"
+      LOCALURI: "mongodb://mongodb:27017/"
+    # command: ./rocketmongoman
