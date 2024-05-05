@@ -11,6 +11,7 @@ mod tests;
 use api::permission_api::get_all_permissions;
 use api::role_api::get_all_roles;
 use api::user_api::{get_all_users, get_user};
+use repository::localdb_repo::LocalRepo;
 use repository::mongodb_repo::MongoRepo;
 use rocket::{get, http::Status, serde::json::Json};
 
@@ -21,9 +22,10 @@ fn hello() -> Result<Json<String>, Status> {
 
 #[launch]
 fn rocket() -> _ {
-    let db = MongoRepo::init();
+    let _ldb = LocalRepo::init();
+    let mdb = MongoRepo::init();
     rocket::build()
-        .manage(db)
+        .manage(mdb)
         .mount("/", routes![get_user])
         .mount("/", routes![get_all_users])
         .mount("/", routes![get_all_roles])

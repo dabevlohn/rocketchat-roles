@@ -23,7 +23,14 @@ fn users() {
 }
 
 #[test]
-fn permissionss() {
+fn settings() {
+    let client = Client::tracked(super::rocket()).unwrap();
+    let response = client.get("/settings").dispatch();
+    assert_eq!(response.status(), Status::NotFound);
+}
+
+#[test]
+fn permissions() {
     let client = Client::tracked(super::rocket()).unwrap();
     let response = client.get("/permissions").dispatch();
     assert_eq!(response.status(), Status::Ok);
