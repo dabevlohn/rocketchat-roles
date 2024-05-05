@@ -4,16 +4,19 @@ mod repository;
 
 #[macro_use]
 extern crate rocket;
-use rocket::{get, http::Status, serde::json::Json};
+
+#[cfg(test)]
+mod tests;
 
 use api::permission_api::get_all_permissions;
 use api::role_api::get_all_roles;
 use api::user_api::{get_all_users, get_user};
 use repository::mongodb_repo::MongoRepo;
+use rocket::{get, http::Status, serde::json::Json};
 
 #[get("/")]
 fn hello() -> Result<Json<String>, Status> {
-    Ok(Json(String::from("Hello from rust and mongoDB")))
+    Ok(Json(String::from("Hello world")))
 }
 
 #[launch]
