@@ -4,9 +4,12 @@ use dotenv::dotenv;
 
 use crate::models::permission_model::Permission;
 use crate::models::role_model::Role;
+use crate::models::room_model::Room;
 use crate::models::user_model::User;
+use chrono::{TimeZone, Utc};
 use mongodb::{
     bson::doc,
+    options::FindOptions,
     bson::extjson::de::Error,
     sync::{Client, Collection},
     //    results::InsertOneResult,
@@ -16,6 +19,7 @@ pub struct MongoRepo {
     usercol: Collection<User>,
     rolecol: Collection<Role>,
     permcol: Collection<Permission>,
+    roomcol: Collection<Room>,
 }
 
 impl MongoRepo {
@@ -30,10 +34,12 @@ impl MongoRepo {
         let usercol: Collection<User> = db.collection("users");
         let rolecol: Collection<Role> = db.collection("rocketchat_roles");
         let permcol: Collection<Permission> = db.collection("rocketchat_permissions");
+        let roomcol: Collection<Room> = db.collection("rocketchat_room");
         MongoRepo {
             usercol,
             permcol,
             rolecol,
+            roomcol,
         }
     }
 
@@ -66,14 +72,49 @@ impl MongoRepo {
     }
 
     pub fn get_all_users(&self) -> Result<Vec<User>, Error> {
+        let trashold = Utc.ymd(2024,1,1).and_hms_opt(0,0,0);
+        let filter =
+            doc! { "$nor": [ 
+                { "roles": { "$exists": false } }, 
+                { "roles": { "$size": 0 } }, 
+                { "roles": { "$in": ["Deactivated"] } }, 
+                { "__rooms": { "$exists": false } }, 
+                { "__rooms": { "$size": 0 } },
+                { "active": false },
+                { "lastLogin": { "$exists": false } },
+                { "lastLogin": { "$lt": trashold } },
+                { "emails.verified": false }
+            ] };
         let cursors = self
             .usercol
-            .find(None, None)
+            .find(filter, None)
             .ok()
             .expect("Error getting list of users");
         let users = cursors.map(|doc| doc.unwrap()).collect();
         Ok(users)
     }
+
+    pub fn get_all_rooms(&self) -> Result<Vec<Room>, Error> {
+        let trashold = Utc.ymd(2024,4,1).and_hms_opt(0,0,0);
+        let filter =
+            doc! { "$nor": [ 
+                { "usersCount": { "$exists": false } }, 
+                { "usersCount": { "$lt": 2 } }, 
+                { "msgs": { "$exists": false } }, 
+                { "msgs": { "$lt": 1 } }, 
+                { "_updatedAt": { "$lt": trashold } }
+            ] };
+        //let find_options = None;
+        let find_options = FindOptions::builder().sort(doc! { "msgs": 1, "usersCount": 1 }).build();
+        let cursors = self
+            .roomcol
+            .find(filter, find_options)
+            .ok()
+            .expect("Error getting list of rooms");
+        let rooms = cursors.map(|doc| doc.unwrap()).collect();
+        Ok(rooms)
+    }
+
 
     pub fn get_all_roles(&self) -> Result<Vec<Role>, Error> {
         let cursors = self

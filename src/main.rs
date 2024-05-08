@@ -11,6 +11,7 @@ mod tests;
 use api::{
     permission_api::get_all_permissions,
     role_api::get_all_roles,
+    room_api::get_all_rooms,
     user_api::{get_all_users, get_user},
 };
 use repository::{localdb_repo::LocalRepo, mongodb_repo::MongoRepo};
@@ -30,6 +31,7 @@ fn rocket() -> _ {
         .mount("/", routes![get_user])
         .mount("/", routes![get_all_users])
         .mount("/", routes![get_all_roles])
+        .mount("/", routes![get_all_rooms])
         .mount("/", routes![get_all_permissions])
         .mount("/", routes![hello])
 }

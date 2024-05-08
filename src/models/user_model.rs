@@ -1,10 +1,12 @@
 // use mongodb::bson::oid::ObjectId;
+use mongodb::bson::DateTime;
 use serde::{Deserialize, Serialize};
+
 
 #[derive(Debug, Serialize, Deserialize)]
 struct Email {
     address: String,
-    verified: bool,
+    verified: Option<bool>,
 }
 
 #[derive(Debug, Serialize, Deserialize)]
@@ -20,9 +22,15 @@ pub struct User {
     #[serde(rename = "__rooms")]
     rooms: Option<Vec<String>>,
     username: String,
-    name: String,
+    name: Option<String>,
     #[serde(rename = "type")]
-    utype: String,
+    utype: Option<String>,
     emails: Option<Vec<Email>>,
     active: bool,
+    #[serde(rename = "createdAt")]
+    created_at: DateTime,
+    #[serde(rename = "lastLogin")]
+    last_login: Option<DateTime>,
+    #[serde(rename = "_updatedAt")]
+    updated_at: Option<DateTime>,
 }
