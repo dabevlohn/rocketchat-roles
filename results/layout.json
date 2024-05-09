@@ -1,0 +1,843 @@
+[
+  {
+    "_id": "UI_Use_Name_Avatar",
+    "_updatedAt": {
+      "$date": {
+        "$numberLong": "1682671172785"
+      }
+    },
+    "ts": {
+      "$date": {
+        "$numberLong": "1682540018236"
+      }
+    },
+    "i18nLabel": "UI_Use_Name_Avatar",
+    "i18nDescription": "UI_Use_Name_Avatar_Description",
+    "type": "boolean",
+    "valueSource": "packageValue",
+    "packageValue": false,
+    "value": true,
+    "section": "User_Interface",
+    "group": "Layout",
+    "public": true,
+    "secret": false,
+    "hidden": false,
+    "blocked": false,
+    "enterprise": false,
+    "env": false,
+    "autocomplete": true,
+    "sorter": 2
+  },
+  {
+    "_id": "UI_Unread_Counter_Style",
+    "_updatedAt": {
+      "$date": {
+        "$numberLong": "1682540018255"
+      }
+    },
+    "ts": {
+      "$date": {
+        "$numberLong": "1682540018255"
+      }
+    },
+    "i18nLabel": "UI_Unread_Counter_Style",
+    "i18nDescription": "UI_Unread_Counter_Style_Description",
+    "type": "select",
+    "valueSource": "packageValue",
+    "packageValue": "Different_Style_For_User_Mentions",
+    "value": "Different_Style_For_User_Mentions",
+    "section": "User_Interface",
+    "group": "Layout",
+    "public": true,
+    "secret": false,
+    "hidden": false,
+    "blocked": false,
+    "enterprise": false,
+    "env": false,
+    "autocomplete": true,
+    "sorter": 6
+  },
+  {
+    "_id": "Layout_Home_Custom_Block_Visible",
+    "_updatedAt": {
+      "$date": {
+        "$numberLong": "1689370741571"
+      }
+    },
+    "ts": {
+      "$date": {
+        "$numberLong": "1685722754357"
+      }
+    },
+    "i18nLabel": "Layout_Home_Custom_Block_Visible",
+    "i18nDescription": "Layout_Home_Custom_Block_Visible_Description",
+    "type": "boolean",
+    "valueSource": "packageValue",
+    "packageValue": false,
+    "value": true,
+    "section": "Layout_Home_Page_Content_Title",
+    "group": "Layout",
+    "public": true,
+    "secret": false,
+    "hidden": false,
+    "blocked": false,
+    "enterprise": false,
+    "env": false,
+    "autocomplete": true,
+    "sorter": 3
+  },
+  {
+    "_id": "UI_Group_Channels_By_Type",
+    "_updatedAt": {
+      "$date": {
+        "$numberLong": "1682540018234"
+      }
+    },
+    "ts": {
+      "$date": {
+        "$numberLong": "1682540018234"
+      }
+    },
+    "i18nLabel": "UI_Group_Channels_By_Type",
+    "i18nDescription": "UI_Group_Channels_By_Type_Description",
+    "type": "boolean",
+    "valueSource": "packageValue",
+    "packageValue": true,
+    "value": true,
+    "section": "User_Interface",
+    "group": "Layout",
+    "public": false,
+    "secret": false,
+    "hidden": false,
+    "blocked": false,
+    "enterprise": false,
+    "env": false,
+    "autocomplete": true,
+    "sorter": 1
+  },
+  {
+    "_id": "Custom_Script_On_Logout",
+    "_updatedAt": {
+      "$date": {
+        "$numberLong": "1682630355676"
+      }
+    },
+    "ts": {
+      "$date": {
+        "$numberLong": "1682540018224"
+      }
+    },
+    "i18nLabel": "Custom_Script_On_Logout",
+    "i18nDescription": "Custom_Script_On_Logout_Description",
+    "type": "code",
+    "valueSource": "packageValue",
+    "packageValue": "//Add your script",
+    "value": "",
+    "section": "Custom_Scripts",
+    "group": "Layout",
+    "public": true,
+    "secret": false,
+    "hidden": false,
+    "blocked": false,
+    "enterprise": false,
+    "env": false,
+    "autocomplete": true,
+    "sorter": 0
+  },
+  {
+    "_id": "Layout_Home_Body",
+    "_updatedAt": {
+      "$date": {
+        "$numberLong": "1685722754354"
+      }
+    },
+    "ts": {
+      "$date": {
+        "$numberLong": "1685722754354"
+      }
+    },
+    "i18nLabel": "Layout_Home_Body",
+    "i18nDescription": "Layout_Custom_Content_Description",
+    "type": "code",
+    "valueSource": "packageValue",
+    "packageValue": "",
+    "value": "<div class=\"rcx-box rcx-box--full rcx-css-nu5inc\">\n  <h2 data-qa-id=\"homepage-welcome-text\" class=\"rcx-box rcx-box--full rcx-h2-custom\">Добро пожаловать в MKB.Chat</h2>\n  <h3 class=\"rcx-box rcx-box--full\">Это меню поможет вам быстрее найти информацию</h3>\n  <div class=\"rcx-box rcx-box--full rcx-grid__wrapper\">\n    <div class=\"rcx-box rcx-box--full rcx-grid\">\n      <div class=\"rcx-box rcx-box--full rcx-grid__item--xl-4 rcx-grid__item--lg-6 rcx-grid__item--md-4 rcx-grid__item--sm-4 rcx-grid__item--xs-4 rcx-grid__item rcx-css-cjb8sk\">\n        <div data-qa-id=\"homepage-mobile-apps-card\" class=\"rcx-box rcx-box--full rcx-css-1ygkez3\">\n          <div class=\"rcx-box rcx-box--full rcx-css-1cshg2o\">Мобильные приложения</div>\n          <div class=\"rcx-box rcx-box--full rcx-css-wqnij1\">Скачайте наше мобильное приложение c80m.4at</div>\n          <div class=\"rcx-box rcx-box--full rcx-css-1eev6b2\">\n            <div role=\"group\" class=\"rcx-box rcx-box--full rcx-button-group--medium rcx-button-group--align-start rcx-button-group\">\n              <a href=\"https://play.google.com/store/apps/details?id=c80m.chat\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"rcx-box rcx-box--full  rcx-button-group__item\">\n                <button type=\"button\" class=\"rcx-box rcx-box--full rcx-box--animated rcx-button\">Android</button>\n              </a>\n              <a href=\"https://apps.apple.com/ru/app/c80m-4at/id1549668782\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"rcx-box rcx-box--full  rcx-button-group__item\">\n                <button type=\"button\" class=\"rcx-box rcx-box--full rcx-box--animated rcx-button\">iOS</button>\n              </a>\n              <a href=\"#\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"rcx-box rcx-box--full  rcx-button-group__item\">\n                <button type=\"button\" class=\"rcx-box rcx-box--full rcx-box--animated rcx-button\">Huawei</button>\n              </a>\n            </div>\n          </div>\n        </div>\n      </div>\n      \n\n      <div class=\"rcx-box rcx-box--full rcx-grid__item--xl-4 rcx-grid__item--lg-6 rcx-grid__item--md-4 rcx-grid__item--sm-4 rcx-grid__item--xs-4 rcx-grid__item rcx-css-cjb8sk\">\n        <div data-qa-id=\"homepage-desktop-apps-card\" class=\"rcx-box rcx-box--full rcx-css-1ygkez3\">\n          <div class=\"rcx-box rcx-box--full rcx-css-1cshg2o\">Приложение для Windows</div>\n          <div class=\"rcx-box rcx-box--full rcx-css-wqnij1\">Установите наш чат на компьютер.</div>\n          <div class=\"rcx-box rcx-box--full rcx-css-1eev6b2\">\n            <div role=\"group\" class=\"rcx-box rcx-box--full rcx-button-group--medium rcx-button-group--align-start rcx-button-group\">\n              <a href=\"softwarecenter:\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"rcx-box rcx-box--full  rcx-button-group__item\">\n                <button type=\"button\" class=\"rcx-box rcx-box--full rcx-box--animated rcx-button--primary rcx-button  rcx-button-group__item\">ПК в сети банка</button>\n              </a>\n              <a href=\"https://go.rocket.chat/i/hp-desktop-app-windows\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"rcx-box rcx-box--full  rcx-button-group__item\">\n                <button type=\"button\" class=\"rcx-box rcx-box--full rcx-box--animated rcx-button\">Личный ПК</button>\n              </a>\n            </div>\n          </div>\n        </div>\n      </div>\n            <div class=\"rcx-box rcx-box--full rcx-grid__item--xl-4 rcx-grid__item--lg-6 rcx-grid__item--md-4 rcx-grid__item--sm-4 rcx-grid__item--xs-4 rcx-grid__item rcx-css-cjb8sk\">\n        <div data-qa-id=\"homepage-desktop-apps-card\" class=\"rcx-box rcx-box--full rcx-css-1ygkez3\">\n          <div class=\"rcx-box rcx-box--full rcx-css-1cshg2o\">Приложение для компьютера MacOS и Linux</div>\n          <div class=\"rcx-box rcx-box--full rcx-css-wqnij1\">Установите наш чат на компьютер.</div>\n          <div class=\"rcx-box rcx-box--full rcx-css-1eev6b2\">\n            <div role=\"group\" class=\"rcx-box rcx-box--full rcx-button-group--medium rcx-button-group--align-start rcx-button-group\">\n              <a href=\"https://go.rocket.chat/i/hp-desktop-app-linux\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"rcx-box rcx-box--full  rcx-button-group__item\">\n                <button type=\"button\" class=\"rcx-box rcx-box--full rcx-box--animated rcx-button\">Linux</button>\n              </a>\n              <a href=\"https://go.rocket.chat/i/hp-desktop-app-mac\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"rcx-box rcx-box--full  rcx-button-group__item\">\n                <button type=\"button\" class=\"rcx-box rcx-box--full rcx-box--animated rcx-button\">Mac</button>\n              </a>\n            </div>\n          </div>\n        </div>\n      </div>\n      <div class=\"rcx-box rcx-box--full rcx-grid__item--xl-4 rcx-grid__item--lg-6 rcx-grid__item--md-4 rcx-grid__item--sm-4 rcx-grid__item--xs-4 rcx-grid__item rcx-css-cjb8sk\">\n        <div data-qa-id=\"homepage-documentation-card\" class=\"rcx-box rcx-box--full rcx-css-1ygkez3\">\n          <div class=\"rcx-box rcx-box--full rcx-css-1cshg2o\">Документация</div>\n          <div class=\"rcx-box rcx-box--full rcx-css-wqnij1\">Изучите документацию по работе в корпоративном мессенджере.</div>\n          <div class=\"rcx-box rcx-box--full rcx-css-1eev6b2\">\n            <div role=\"group\" class=\"rcx-box rcx-box--full rcx-button-group--medium rcx-button-group--align-start rcx-button-group\">\n              <a href=\"https://cnfl.mcb.ru/display/gts/RocketChat+HELP+-+Materials\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"rcx-box rcx-box--full  rcx-button-group__item\">\n                <button type=\"button\" class=\"rcx-box rcx-box--full rcx-box--animated rcx-button\">Документация</button>\n              </a>\n              <a href=\"https://cnfl.mcb.ru/pages/viewpage.action?pageId=36249511\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"rcx-box rcx-box--full  rcx-button-group__item\">\n                <button type=\"button\" class=\"rcx-box rcx-box--full rcx-box--animated rcx-button\">Инструкция</button>\n              </a>\n            </div>\n          </div>\n        </div>\n      </div>\n    </div>\n  </div>\n  <div class=\"rcx-box rcx-box--full rcx-css-1bjg207\">\n    <div class=\"rcx-box rcx-box--full rcx-box--with-block-elements rcx-box--with-inline-elements\">\n<style>\n  * {\n   font-family: Segoe UI;\n   font-size: 95%;\n  }\n  h2.rcx-css-11xxbpr {\n\tdisplay:none;\n}\nh3.rcx-css-199ad36 {\n\tdisplay:none;\n}\nh3.rcx-css-199ad36 + div {\n\tdisplay:none;\n}\n  h2.rcx-h2-custom{\n\n    font-size: 2rem !important;\n    font-weight: 700 !important;\n    letter-spacing: 0rem !important;\n    line-height: 2.5rem !important;\n}\n\n\n\t.hide,\n\t.hide+label~div {\n\t\tdisplay: none;\n\t}\n\n\t.hide+label {\n\t\tcolor: green;\n\t\tcursor: pointer;\n\t\tdisplay: inline-block;\n\t}\n\n\t.hide:checked+label {\n\t\tborder-bottom: 0;\n\t}\n\n\t.hide:checked+label+div {\n\t\tdisplay: block;\n\t\t-moz-box-shadow: inset 0px 0px 3px;\n\t\t-webkit-box-shadow: inset 0px 0px 3px;\n\t\tbox-shadow: inset 0px 0px 2px;\n\t\t-webkit-animation: fade ease-in 0.2s;\n\t\t-moz-animation: fade ease-in 0.25;\n\t\tanimation: fade ease-in 0.25s;\n\t}\n\n\t@-moz-keyframes fade {\n\t\tfrom {\n\t\t\topacity: 0;\n\t\t}\n\t\tto {\n\t\t\topacity: 1\n\t\t}\n\t}\n\n\t@-webkit-keyframes fade {\n\t\tfrom {\n\t\t\topacity: 0;\n\t\t}\n\t\tto {\n\t\t\topacity: 1\n\t\t}\n\t}\n\n\t@keyframes fade {\n\t\tfrom {\n\t\t\topacity: 0;\n\t\t}\n\t\tto {\n\t\t\topacity: 1\n\t\t}\n\t}\n\n\t.hide+label:before {\n\t\tcontent: \"\\002B\";\n\t\tdisplay: block;\n\t\tfloat: left;\n\t\ttext-align: center;\n\t\t-webkit-border-radius: 50%;\n\t\t-moz-border-radius: 50%;\n\t\tborder-radius: 50%;\n\t}\n\n\t.hide:checked+label:before {\n\t\tcontent: \"\\2212\";\n\t}\n</style>\n\n<div class=\"demo\">\n    <input class=\"hide\" id=\"hd-1\" type=\"checkbox\">\n    <label for=\"hd-1\"><b>Известные проблемы</b></label>\n  <div>\n<li>Подключение с OpenVPN не работает</li>\n<li>\"Залипание\" статуса away (необходима перезагрузка страницы)</li>\n<li>\"Утечка памяти\" electron-приложения</li>\n  </div>\n</div>\n<p></p>\n<div class=\"demo\">\n    <input class=\"hide\" id=\"hd-2\" type=\"checkbox\">\n  <label for=\"hd-2\"><b>Ближайшие планы</b></label>\n  <div>\n<li>Интеграция RocketChat с Omnitracker</li> \n  </div>\n</div>\n<p></p>\n<div class=\"demo\">\n    <input class=\"hide\" id=\"hd-3\" type=\"checkbox\">\n    <label for=\"hd-3\"><b>Частые вопросы</b></label>\n  <div>\n  <li>Большое использование памяти десктоп приложения</li>\n    <div class=\"demo\">\n    <input class=\"hide\" id=\"hd-31\" type=\"checkbox\">\n    <label for=\"hd-31\"><b>Ответ</b></label>\n    <div>\n      <li><b>Похоже на утечку памяти, перезагрузка должна помочь (\"нормальный расход\" памяти ~400мб)</b></li>\n    </div>\n  </div>\n    <p></p>\n  <li>Не могу подключиться к серверу. Что делать?</li>\n  <div class=\"demo\">\n    <input class=\"hide\" id=\"hd-32\" type=\"checkbox\">\n    <label for=\"hd-32\"><b>Ответ</b></label>\n    <div>\n      <li><b>Проверьте домен к которому идет подключение. Со всех устройсв необходимо подключаться на im.<b>mkb</b>.ru</b></li>\n    </div>\n  </div>\n    <p></p>\n\t<li>Не отображаются картинки/скриншоты.</li>\n\t<div class=\"demo\">\n\t\t<input class=\"hide\" id=\"hd-33\" type=\"checkbox\">\n\t    <label for=\"hd-33\"><b>Ответ</b></label>\n\t    <div>\n\t      <li><b>Проверьте домен к которому идет подключение. Со всех устройсв необходимо подключаться на im.<b>mkb</b>.ru</b></li>\n\t    </div>\n\t  </div>\n    <p></p>\n\t\t<li>Не могу скачать вложение. Что делать?</li>\n\t\t<div class=\"demo\">\n\t\t\t<input class=\"hide\" id=\"hd-34\" type=\"checkbox\">\n\t\t\t    <label for=\"hd-34\"><b>Ответ</b></label>\n\t\t\t    <div>\n                  <li><b>Скачивание и загрузка вложений доступно только внутри офисной сети.</b></li>\n\t\t\t    </div>\n\t\t\t  </div>\n    <p></p>\n\t\t\t\t<li>Как удалить сервер в приложении и добавить новый?</li>\n\t\t\t\t<div class=\"demo\">\n\t\t\t\t\t<input class=\"hide\" id=\"hd-35\" type=\"checkbox\">\n\t\t\t\t\t\t\t    <label for=\"hd-35\"><b>Ответ</b></label>\n\t\t\t\t\t\t\t    <div>\n<li><b>В приложении слева наверху есть кнопка \"Файл\", под вы найдете иконку ромба (фигуры). Нажмите на нее правой кнопкой мыши и выберите \"удалить сервер\". Рокет автоматически предложит новый, введите https://im.mkb.ru.\n<a title=\"Более подробная инструкция\" href=\"https://cnfl.mcb.ru/display/gts/RocketChat+HELP+-+Materials\" target=\"_blank\" rel=\"noopener\">Более подробная инструкция</a></b></li>\n\t\t\t\t\t\t\t    </div>\n\t\t\t\t\t\t\t  </div>\n    <p></p>\n    \t\t\t\t<li>При попытке вставить код/формулу получаю ошибку: KaTeX parse error: Expected '}', got 'EOF' at end of input</li>\n\t\t\t\t<div class=\"demo\">\n\t\t\t\t\t<input class=\"hide\" id=\"hd-36\" type=\"checkbox\">\n\t\t\t\t\t\t\t    <label for=\"hd-36\"><b>Ответ</b></label>\n\t\t\t\t\t\t\t    <div>\n<li><b>Пожалуйста, используйте символ обратной кавычки для заключения кода в блок:\n                                      ```\n                                      CODE\n  \t\t\t\t\t\t\t\t\t  ```\n  <a title=\"Более подробная инструкция\" href=\"https://cnfl.mcb.ru/display/gts/RocketChat+HELP+-+Materials\" target=\"_blank\" rel=\"noopener\">Более подробная инструкция</a></b>\n</li>\n </div>\n</div>\n    <p></p>\n  </div>\n</div>",
+    "section": "Layout_Home_Page_Content_Title",
+    "group": "Layout",
+    "public": true,
+    "secret": false,
+    "hidden": false,
+    "blocked": false,
+    "enterprise": false,
+    "env": false,
+    "autocomplete": true,
+    "sorter": 2
+  },
+  {
+    "_id": "Layout_Show_Home_Button",
+    "_updatedAt": {
+      "$date": {
+        "$numberLong": "1685722754350"
+      }
+    },
+    "ts": {
+      "$date": {
+        "$numberLong": "1685722754350"
+      }
+    },
+    "i18nLabel": "Layout_Show_Home_Button",
+    "i18nDescription": "Layout_Show_Home_Button_Description",
+    "type": "boolean",
+    "valueSource": "packageValue",
+    "packageValue": true,
+    "value": true,
+    "section": "Layout_Home_Page_Content_Title",
+    "group": "Layout",
+    "public": true,
+    "secret": false,
+    "hidden": false,
+    "blocked": false,
+    "enterprise": false,
+    "env": false,
+    "autocomplete": true,
+    "sorter": 1
+  },
+  {
+    "_id": "Layout_Login_Terms",
+    "_updatedAt": {
+      "$date": {
+        "$numberLong": "1699041697967"
+      }
+    },
+    "ts": {
+      "$date": {
+        "$numberLong": "1699041680726"
+      }
+    },
+    "i18nLabel": "Layout_Login_Terms",
+    "i18nDescription": "Layout_Login_Terms_Description",
+    "type": "code",
+    "valueSource": "packageValue",
+    "packageValue": "",
+    "value": "",
+    "section": "Layout_Home_Page_Content_Title",
+    "group": "Layout",
+    "public": true,
+    "secret": false,
+    "hidden": false,
+    "blocked": false,
+    "enterprise": false,
+    "env": false,
+    "autocomplete": true,
+    "sorter": 6
+  },
+  {
+    "_id": "theme-custom-css",
+    "_updatedAt": {
+      "$date": {
+        "$numberLong": "1696968898386"
+      }
+    },
+    "ts": {
+      "$date": {
+        "$numberLong": "1682540016558"
+      }
+    },
+    "i18nLabel": "theme-custom-css",
+    "i18nDescription": "theme-custom-css_Description",
+    "type": "code",
+    "valueSource": "packageValue",
+    "packageValue": "",
+    "value": "--black-text-color: #242729;\n/******************************************\n *************Circle Avatars*************\n ******************************************/\n\nbody.dark-mode .rcx-avatar__element {\n\tborder-radius: 100%;\n}\n\nbody.dark-mode .avatar .avatar-image {\n\tborder-radius: 100%;\n}\n\nbody .rcx-avatar__element {\n\tborder-radius: 100%;\n}\n\nbody .avatar .avatar-image {\n\tborder-radius: 100%;\n}\n\n/******************************************\n *************Bubble style*************\n ******************************************/\nbody .rcx-box.rcx-box--full.rcx-message-container:not(.rcx-message-container--left){\n  border-radius: 1.15rem;\n  line-height: 1.25;\n  max-width: calc(83% - 140px);\n  padding: 0.5rem .875rem;\n  position: relative;\n  word-wrap: break-word;  \n  align-items: flex-start;\n  /*background-color: var(--rcx-color-button-background-secondary-danger-focus,var(--own-true-light-color));*/\n}\n\n/*Перенос ФИО выше цитат */\n.rcx-message-header, .rcx-message-header__wrapper{\n  order: -1;\n}\n\n/* \"Ушко\" сообщений */\n/*  \nbody .rcx-box.rcx-box--full.rcx-message-container:not(.rcx-message-container--left)::before{\n  \n  content: \"\";\n  height: 17px;\n  position: absolute;\n  \n}\n*/\n/*******************/\n\n\n/* переносим цитату наверх */\n\nbody .rcx-box .rcx-box--full .rcx-message-container > div:has(blockquote) {\n  order: -1;\n}\n\nbody .rcx-box .rcx-box--full .rcx-message-container > div:has(blockquote) > blockquote {\n  padding-top: 0 !important;\n  padding-bottom: 0 !important;\n}\n/**************************/\n\n/* убираем полоску разделителя по дням */\n\nbody .rcx-message-divider__bar::after {\n\tcontent: none !important;\n}\nbody .rcx-message-divider__wrapper {\n\tborder-radius: 16px !important;\n\tpadding: 2px 18px;\n\tfont-size: 15px;\n    line-height: 18px;\n\tbackground-color: #f4f4f4 !important;\n\tcolor: #242729;\n}\nbody ul.messages-list > div.rcx-message-divider {\n\tmargin: 20px !important;\n}\n/**************************************/\n\n/* не знаю, что этот и следующий блок стилей делают */\nbody .rcx-message[data-own=\"false\"]:not(.rcx-message--sequential) > .rcx-box.rcx-box--full.rcx-message-container:not(.rcx-message-container--left)::before{\n    border: 0.4rem solid var(--rcx-color-button-background-secondary-danger-hover,var(--own-false-light-color));\n    left: -0.35rem;\n    transform: translate(0, -0.2rem);\n    border-top-right-radius: 0.8rem;\n    border-bottom-left-radius: 2.2rem;\n\n}\nbody .rcx-message[data-own=\"true\"]:not(.rcx-message--sequential) > .rcx-box.rcx-box--full.rcx-message-container:not(.rcx-message-container--left)::before{\n\t\n    border-right: var(--befort-border-radius1,0.8rem) solid var(--rcx-color-button-background-secondary-danger-focus,var(--own-true-light-color));\n    right: var(--before-arrow,auto);\n  \tleft: var(--before-auto,-0.35rem);\n    transform: translate(0, -0.2rem);\n    border-top-right-radius: var(--befort-border-radius1,unset);\n    border-bottom-right-radius: var(--befort-border-radius2,innerit);\n    /*border-top-left-radius: var(--before-unset,1.8rem);\n    border-bottom-left-radius: var(--before-unset,0.2rem);\n    border-top-right-radius: var(--before-initial,0.8rem);*/\n    border-bottom-left-radius: var(--before-initial,2.2rem);\n  \tbottom: var(--before-01em, unset); /* для своих показываем внизу */\n    /*\n    \t--before-unset: unset;\n  \t--befort-border-radius: 1.8rem;\n  \t--befort-border-radius: 0.2rem;\n  \t--before-arrow: -0.35rem;\n  */\n\n}\n/***************************************************/\nbody .rcx-message{\n\t--own-true-light-color: #cde3ff;\n    --own-false-light-color: #ffffff; \n  \t/*\n\t--own-true-dark-color: #2b5278;\n    --own-false-dark-color: #182533;\n  \t--message-background-dark-color: #0e1621;\n\t*/\n}\n\n\n\n/* Контент сообщения к низу */\nbody .rcx-message { \t\n    align-items: var(--flex-dir-flex-end, normal)!important;   /* для своих показываем аватарки внизу */\n}\n/****************************/\n\n/* Разделение сообщение лево/право */\nbody .rcx-message[data-own=\"true\"]{\n \tflex-direction: var(--flex-dir-row-reverse,row)!important;\n}\n/***********************************/\n\n/* Чужие сообщения */\n\t/* Цвет фона бабла */\nbody .rcx-message[data-own=\"false\"] > .rcx-box.rcx-box--full.rcx-message-container:not(.rcx-message-container--left) {\n    /* background-color: var(--rcx-color-button-background-secondary-danger-hover,rgba(255, 255, 255, 0.6)); */\n    background-color: var(--rcx-color-button-background-secondary-danger-hover,#eff5fd); \t\n}\n  \t/* Цвет текста */\nbody .rcx-message[data-own=\"true\"] > .rcx-box.rcx-box--full.rcx-message-container:not(.rcx-message-container--left) > .rcx-message-body {\n  \tcolor: --black-text-color;\n}\n\n/*цвет ссылок для своих и подчеркивание*/\nbody .rcx-message[data-own=\"true\"] > .rcx-box.rcx-box--full.rcx-message-container:not(.rcx-message-container--left) > .rcx-message-body div div a {\n   /* color: var(--rcx-color-font-info, var(--rcx-color-primary-600, #ffffff));\n  text-decoration: underline; */\n}\n\n\t/* Стили фона сообщения при фокусе */\nbody .rcx-message[data-own=\"false\"]:hover, body .rcx-message:focus {\n   /* background: var(--rcx-message-background-color-focus, var(--rcx-color-surface-hover, var(--rcx-color-neutral-200, #ABC7F4)))\n*/\n}\n/******************/\n\n/*  Свои сообщения   */\n  \t/* Цвет фона бабла */\nbody .rcx-message[data-own=\"true\"] > .rcx-box.rcx-box--full.rcx-message-container:not(.rcx-message-container--left) {\n \tbackground-color: var(--rcx-color-button-background-secondary-danger-hover,#d8e7ff);  \n}\n  \t/* Цвет текста */\nbody .rcx-message[data-own=\"true\"] > .rcx-box.rcx-box--full.rcx-message-container:not(.rcx-message-container--left) > .rcx-message-body {\n  \t/*color: var(--black-text-color,#fff) !important; */\n}\n  \t/* Стили имени */\nbody .rcx-message[data-own=\"true\"] > .rcx-box.rcx-box--full.rcx-message-container:not(.rcx-message-container--left) > .rcx-message-header > .rcx-message-header__wrapper > .rcx-message-header__name-container > span {\n  \t/*color: var(--black-text-color, #fff) !important; */\n}\n\n\t/* Стили фона сообщения при фокусе */\nbody .rcx-message[data-own=\"true\"]:hover, body .rcx-message:focus {\n    background: var(--rcx-message-background-color-focus, var(--rcx-color-surface-hover, var(--rcx-color-neutral-200, #ABC7F4)))\n}\n/********************/\n\n/* Системные сообщения по центру */\nbody .rcx-box .rcx-box--full .rcx-message-system {\n  display: flex;\n  justify-content: center;\n}\n\nbody .rcx-box .rcx-box--full .rcx-message-system > .rcx-message-system__container {\n  width: auto;\n}\n/*********************************/\n\n/* Аватакрки внизу, отключил из-за логики*/\n/*\nbody .rcx-message{\n  align-items: flex-end;\n  \n}\n*/\n\n\n/* Фиксим ширину на динамику */\nbody .rcx-message-container{\n flex-grow: 0; \n}\n\n/* Галка внизу и время */\nbody .rcx-message-container > div:not(.rcx-message-body):not(.rcx-message-header) {    \n    inset-block-start: unset !important;\n    /*inset-inline-end: unset !important;*/\n    /*bottom: 10px; */\n    right: 5px;    \n}\nbody .rcx-message > .rcx-box.rcx-box--full.rcx-message-container:not(.rcx-message-container--left) div:has( > i.rcx-icon){\n\tbottom: 10px;\n}\nbody .rcx-message-header__time {\n    right: 25px;\n    bottom: 10px;\n    position: absolute;\n}\nbody .rcx-message > .rcx-box.rcx-box--full.rcx-message-container:not(.rcx-message-container--left) {\n  padding-right: 85px;\n}\nbody .rcx-message[data-sequential='true'] > .rcx-box.rcx-box--full.rcx-message-container:not(.rcx-message-container--left) {\n  padding-right: 30px;\n}\n/* Цвет галки  */\nbody .rcx-message[data-own=\"true\"] > .rcx-box.rcx-box--full.rcx-message-container:not(.rcx-message-container--left) > div:not(.rcx-message-body):not(.rcx-message-header) > i {\n   /* color: var(--rcx-color-font-info, rgba(255, 255, 255, 0.6)) !important;   */\n}\nbody .rcx-message[data-own=\"false\"] > .rcx-box.rcx-box--full.rcx-message-container:not(.rcx-message-container--left) > div:not(.rcx-message-body):not(.rcx-message-header) > i {\n    color: var(--rcx-color-font-info, var(--rcx-color-primary-600, #095AD2)) !important;   \n}\n\n/* Стили кнопок реакции */\n\t/* переносим меню ближе */\nbody .rcx-message .rcx-message-toolbox {\n  right: auto;\n  top: 0;\n  \n}\nbody .rcx-message:hover .rcx-box.rcx-box--full.rcx-message-toolbox__wrapper {\n   /* display: var(--flex-dir-flex,initial); */\n   display: flex;\n   flex-direction: var(--flex-dir-row-reverse,row)!important;   \n   align-items: flex-start;\n}\nbody .rcx-message .rcx-message-toolbox {\n  position: sticky;\n}\n/**************************/\n\n\n/* Контейнер с сообщениями цвет фона */\nbody div .main-content-flex {\n /* background-color: var(--rcx-color-surface-room, #D8E5FA) !important; */\n}\n/***************************/\n\n\n/* ToDo: Поправить на нормальный селектор */\nbody .rcx-css-1rdomle:has( > aside.rcx-box.rcx-box--full.rcx-vertical-bar) {\n\t--flex-dir-row-reverse: row-reverse;\n  \t/*--flex-dir-flex-end: flex-end;  */\t\n  \t--flex-dir-flex: flex;\n  \t--before-unset: unset;\n  \t--before-initial: initial;\n  \t--before-auto: auto;\n  \t--befort-border-radius1: 1.8rem;\n  \t--befort-border-radius2: 0.2rem;\n  \t--befort-border-radius3: 0.8rem;\n  \t--before-arrow: -0.35rem;\n  \t--before-01em: 0.1em;\n  \t\n  \t\n  \t\n}\nbody aside.rcx-box.rcx-box--full.rcx-vertical-bar .rcx-message-header__time {\n    right: auto;\n    bottom: auto;\n    position: relative;\n}\nbody aside.rcx-vertical-bar .rcx-message-container:not(.rcx-message-container--left) {\n  max-width:90%!important;\n  padding-right: 30px!important;\n  overflow: hidden;\n}\nbody aside.rcx-vertical-bar .rcx-message[data-own=\"false\"] > .rcx-box.rcx-box--full.rcx-message-container:not(.rcx-message-container--left) {\n    background-color: var(--rcx-color-button-background-secondary-danger-hover,#f0f0f0);\n}\nbody aside.rcx-vertical-bar .rcx-message .rcx-message-toolbox {\n    position: absolute;\n  \tright: 10px;\n}\n\nbody .rcx-message > .rcx-box.rcx-box--full.rcx-message-container:not(.rcx-message-container--left):has(.rcx-message-body div div[role=\"presentation\"]){\n    background: none !important;\n\n}\n/*двигаем смайлик и реакции вправо */\nbody .rcx-css-1rdomle:has( > aside.rcx-box.rcx-box--full.rcx-vertical-bar) .rcx-message[data-own='true'] > .rcx-box.rcx-box--full.rcx-message-container:not(.rcx-message-container--left):has(.rcx-message-body div div[role=\"presentation\"]) .rcx-message-body,\nbody .rcx-css-1rdomle:has( > aside.rcx-box.rcx-box--full.rcx-vertical-bar) .rcx-message[data-own='true'] > .rcx-box.rcx-box--full.rcx-message-container:not(.rcx-message-container--left):has(.rcx-message-body div div[role=\"presentation\"]) .rcx-message-block{\n  align-self: flex-end;\n}\nbody .rcx-message[data-own='true'] > .rcx-box.rcx-box--full.rcx-message-container:not(.rcx-message-container--left):has(.rcx-message-body div div[role=\"presentation\"]) > .rcx-message-header > .rcx-message-header__wrapper > span > span {\n    color:var(--black-text-color) !important;\n}\n\n/* fix цитат */\n/* ToDo: Поправить на нормальный селектор */\nbody .rcx-css-8baznz {\n   /* border-radius: 0 10px 10px 0px!important; */\n   background: none!important;\n   border-color: initial!important;\n   border-left-width: 0.2rem !important;\n   border-right-width: 0 !important;\n   border-top-width: 0 !important;\n   border-bottom-width: 0 !important;\n}\n\n/* Фикс стилей цитаты в своих сообщениях */\nbody .rcx-message[data-own='true'] > .rcx-message-container:not(.rcx-message-container--left) > .rcx-attachment__content > blockquote > div * {\n  /* color: rgba(255, 255, 255, 0.6) !important; */\n}\n\n/* Полоска цитаты - отключаю*/\nbody .rcx-message[data-own='true'] > .rcx-message-container:not(.rcx-message-container--left) > .rcx-attachment__content > blockquote {\n  /*border-color: rgba(255, 255, 255, 0.8) !important; */\n}\n/*****************************************/\n\n/* Фикс штуковины для тредов (колокольчики и прочая шляпа) */\nbody .rcx-message[data-own='true'] > .rcx-message-container:not(.rcx-message-container--left) > .rcx-message-block > div {\n  color: rgba(255, 255, 255, 0.8);\n}\n\n@media (max-width: 1279.98px) {\n  /* ToDo: Поправить на нормальный селектор */\n  body .main-content {\n\t--flex-dir-row-reverse: row-reverse;\n  /*\t--flex-dir-flex-end: flex-end;  */\t\n  \t--flex-dir-flex: flex;\n  \t--before-unset: unset;\n  \t--before-initial: initial;\n  \t--before-auto: auto;\n  \t--befort-border-radius1: 1.8rem;\n  \t--befort-border-radius2: 0.2rem;\n  \t--befort-border-radius3: 0.8rem;\n  \t--before-arrow: -0.35rem;\n  \t--before-01em: 0.1em;\n\t}\n  /*двигаем смайлик и реакции вправо */\n  \tbody .rcx-message[data-own='true'] > .rcx-box.rcx-box--full.rcx-message-container:not(.rcx-message-container--left):has(.rcx-message-body div div[role=\"presentation\"]) .rcx-message-body,\n  \tbody .rcx-message[data-own='true'] > .rcx-box.rcx-box--full.rcx-message-container:not(.rcx-message-container--left):has(.rcx-message-body div div[role=\"presentation\"]) .rcx-message-block{\n    align-self: flex-end;\n  \t}\n  /* убираем обрезку на 140 пикселей */\n\tbody .rcx-box.rcx-box--full.rcx-message-container:not(.rcx-message-container--left) {\n\t\tmax-width:80%;\n  \t}\n  \t/*Фиксируем для узких тулбокс */\n    body .rcx-message[data-own='false'] .rcx-message-toolbox {\n        position: absolute;\n        right: 10px;\n\t}\n    body .rcx-message[data-own='true'] .rcx-message-toolbox {\n        position: absolute;\n        left: 10px;\n\t}\n\n}\n\n/* Большие эмодзи */\nbody div[role=\"presentation\"] span .rcx-message__emoji--big {\n    height: 4.75rem;\n    width: 4.75rem;\n}\n\n/*****************/\nbody .rcx-message-reactions__reaction{\n      border-radius: var(--rcx-message-reaction-border-radius,var(--rcx-border-radius-medium,.65rem));\n      padding: 0.175rem;\n  \tbackground-color: var(--rcx-color-button-background-secondary-danger-hover,#f7f8fa);\n  \t   /*   background-color: var(--rcx-message-reaction-hover-background-color,var(--rcx-color-surface-tint,var(--rcx-color-neutral-100,#f7f8fa))); */\n}\n\n\nbody .rcx-message[data-own='true'] > .rcx-message-container:not(.rcx-message-container--left) > .rcx-message-block > .rcx-message-reactions__container > .rcx-message-reactions__reaction {\n      border-radius: var(--rcx-message-reaction-border-radius,var(--rcx-border-radius-medium,.65rem));\n      padding: 0.175rem;\n  \t  background-color: var(--rcx-color-button-background-secondary-danger-hover,#fff) !important;\n  \t   /*   background-color: var(--rcx-message-reaction-hover-background-color,var(--rcx-color-surface-tint,var(--rcx-color-neutral-100,#f7f8fa))); */\n}\n\n/* Замена голосовалки */\nbody .rcx-box.rcx-box--full.rcx-message-block--width-fixed.rcx-message-block span code.code-colors.inline {\n    background: -webkit-linear-gradient(327deg, #e3f2fff7 -15%, #6ebaf9f7 50%, #267cf5f7 135%);\n    background-clip: text;\n    -webkit-background-clip: text;\n    -webkit-text-fill-color: transparent;\n    letter-spacing: -0.05rem;\n}",
+    "section": "Custom CSS",
+    "group": "Layout",
+    "public": true,
+    "secret": false,
+    "hidden": false,
+    "blocked": false,
+    "enterprise": false,
+    "env": false,
+    "autocomplete": true,
+    "sorter": 0
+  },
+  {
+    "_id": "UI_Show_top_navbar_embedded_layout",
+    "_updatedAt": {
+      "$date": {
+        "$numberLong": "1682540018261"
+      }
+    },
+    "ts": {
+      "$date": {
+        "$numberLong": "1682540018261"
+      }
+    },
+    "i18nLabel": "UI_Show_top_navbar_embedded_layout",
+    "i18nDescription": "UI_Show_top_navbar_embedded_layout_Description",
+    "type": "boolean",
+    "valueSource": "packageValue",
+    "packageValue": false,
+    "value": false,
+    "section": "User_Interface",
+    "group": "Layout",
+    "public": true,
+    "secret": false,
+    "hidden": false,
+    "blocked": false,
+    "enterprise": false,
+    "env": false,
+    "autocomplete": true,
+    "sorter": 8
+  },
+  {
+    "_id": "Layout_Terms_of_Service",
+    "_updatedAt": {
+      "$date": {
+        "$numberLong": "1685722754364"
+      }
+    },
+    "ts": {
+      "$date": {
+        "$numberLong": "1685722754364"
+      }
+    },
+    "i18nLabel": "Layout_Terms_of_Service",
+    "i18nDescription": "Layout_Terms_of_Service_Description",
+    "type": "code",
+    "valueSource": "packageValue",
+    "packageValue": "Terms of Service <br> Go to APP SETTINGS &rarr; Layout to customize this page.",
+    "value": "Terms of Service <br> Go to APP SETTINGS &rarr; Layout to customize this page.",
+    "section": "Layout_Home_Page_Content_Title",
+    "group": "Layout",
+    "public": true,
+    "secret": false,
+    "hidden": false,
+    "blocked": false,
+    "enterprise": false,
+    "env": false,
+    "autocomplete": true,
+    "sorter": 5
+  },
+  {
+    "_id": "UI_Click_Direct_Message",
+    "_updatedAt": {
+      "$date": {
+        "$numberLong": "1682540018241"
+      }
+    },
+    "ts": {
+      "$date": {
+        "$numberLong": "1682540018241"
+      }
+    },
+    "i18nLabel": "UI_Click_Direct_Message",
+    "i18nDescription": "UI_Click_Direct_Message_Description",
+    "type": "boolean",
+    "valueSource": "packageValue",
+    "packageValue": false,
+    "value": false,
+    "section": "User_Interface",
+    "group": "Layout",
+    "public": true,
+    "secret": false,
+    "hidden": false,
+    "blocked": false,
+    "enterprise": false,
+    "env": false,
+    "autocomplete": true,
+    "sorter": 4
+  },
+  {
+    "_id": "Accounts_ShowFormLogin",
+    "_updatedAt": {
+      "$date": {
+        "$numberLong": "1685722754344"
+      }
+    },
+    "ts": {
+      "$date": {
+        "$numberLong": "1685722754343"
+      }
+    },
+    "i18nLabel": "Accounts_ShowFormLogin",
+    "i18nDescription": "Accounts_ShowFormLogin_Description",
+    "type": "boolean",
+    "valueSource": "packageValue",
+    "packageValue": true,
+    "value": true,
+    "section": "Login",
+    "group": "Layout",
+    "public": true,
+    "secret": false,
+    "hidden": false,
+    "blocked": false,
+    "enterprise": false,
+    "env": false,
+    "autocomplete": true,
+    "sorter": 4
+  },
+  {
+    "_id": "Custom_Script_Logged_Out",
+    "_updatedAt": {
+      "$date": {
+        "$numberLong": "1682540018226"
+      }
+    },
+    "ts": {
+      "$date": {
+        "$numberLong": "1682540018226"
+      }
+    },
+    "i18nLabel": "Custom_Script_Logged_Out",
+    "i18nDescription": "Custom_Script_Logged_Out_Description",
+    "type": "code",
+    "valueSource": "packageValue",
+    "packageValue": "//Add your script",
+    "value": "//Add your script",
+    "section": "Custom_Scripts",
+    "group": "Layout",
+    "public": true,
+    "secret": false,
+    "hidden": false,
+    "blocked": false,
+    "enterprise": false,
+    "env": false,
+    "autocomplete": true,
+    "sorter": 1
+  },
+  {
+    "_id": "Layout_Privacy_Policy",
+    "_updatedAt": {
+      "$date": {
+        "$numberLong": "1685722754372"
+      }
+    },
+    "ts": {
+      "$date": {
+        "$numberLong": "1685722754372"
+      }
+    },
+    "i18nLabel": "Layout_Privacy_Policy",
+    "i18nDescription": "Layout_Privacy_Policy_Description",
+    "type": "code",
+    "valueSource": "packageValue",
+    "packageValue": "Privacy Policy <br> Go to APP SETTINGS &rarr; Layout to customize this page.",
+    "value": "Privacy Policy <br> Go to APP SETTINGS &rarr; Layout to customize this page.",
+    "section": "Layout_Home_Page_Content_Title",
+    "group": "Layout",
+    "public": true,
+    "secret": false,
+    "hidden": false,
+    "blocked": false,
+    "enterprise": false,
+    "env": false,
+    "autocomplete": true,
+    "sorter": 7
+  },
+  {
+    "_id": "UI_Allow_room_names_with_special_chars",
+    "_updatedAt": {
+      "$date": {
+        "$numberLong": "1682540018258"
+      }
+    },
+    "ts": {
+      "$date": {
+        "$numberLong": "1682540018258"
+      }
+    },
+    "i18nLabel": "UI_Allow_room_names_with_special_chars",
+    "i18nDescription": "UI_Allow_room_names_with_special_chars_Description",
+    "type": "boolean",
+    "valueSource": "packageValue",
+    "packageValue": false,
+    "value": true,
+    "section": "User_Interface",
+    "group": "Layout",
+    "public": true,
+    "secret": false,
+    "hidden": false,
+    "blocked": false,
+    "enterprise": false,
+    "env": false,
+    "autocomplete": true,
+    "sorter": 7
+  },
+  {
+    "_id": "UI_Use_Real_Name",
+    "_updatedAt": {
+      "$date": {
+        "$numberLong": "1682540018239"
+      }
+    },
+    "ts": {
+      "$date": {
+        "$numberLong": "1682540018239"
+      }
+    },
+    "i18nLabel": "UI_Use_Real_Name",
+    "i18nDescription": "UI_Use_Real_Name_Description",
+    "type": "boolean",
+    "valueSource": "packageValue",
+    "packageValue": false,
+    "value": true,
+    "section": "User_Interface",
+    "group": "Layout",
+    "public": true,
+    "secret": false,
+    "hidden": false,
+    "blocked": false,
+    "enterprise": false,
+    "env": false,
+    "autocomplete": true,
+    "sorter": 3
+  },
+  {
+    "_id": "Layout_Sidenav_Footer",
+    "_updatedAt": {
+      "$date": {
+        "$numberLong": "1685722754382"
+      }
+    },
+    "ts": {
+      "$date": {
+        "$numberLong": "1685722754382"
+      }
+    },
+    "i18nLabel": "Layout_Sidenav_Footer",
+    "i18nDescription": "Layout_Sidenav_Footer_description",
+    "type": "code",
+    "valueSource": "packageValue",
+    "packageValue": "<a href=\"/home\"><img src=\"assets/logo.png\" alt=\"Home\" /></a>",
+    "value": "<a href=\"/home\"><img src=\"assets/logo.png\" alt=\"Home\" /></a>",
+    "section": "Layout_Home_Page_Content_Title",
+    "group": "Layout",
+    "public": true,
+    "secret": false,
+    "hidden": false,
+    "blocked": false,
+    "enterprise": false,
+    "env": false,
+    "autocomplete": true,
+    "sorter": 10
+  },
+  {
+    "_id": "Custom_Script_Logged_In",
+    "_updatedAt": {
+      "$date": {
+        "$numberLong": "1695240692287"
+      }
+    },
+    "ts": {
+      "$date": {
+        "$numberLong": "1682540018229"
+      }
+    },
+    "i18nLabel": "Custom_Script_Logged_In",
+    "i18nDescription": "Custom_Script_Logged_In_Description",
+    "type": "code",
+    "valueSource": "packageValue",
+    "packageValue": "//Add your script",
+    "value": "\n//Hide footer\nvar onReadyDomElement = function(element, callback) {\n  if (jQuery(element).length) {\n    callback(jQuery(element));\n  } else {\n    setTimeout(function() {\n      onReadyDomElement(element, callback);\n    }, 100);\n  }\n};\n// example\nonReadyDomElement('div.rcx-sidebar-footer', function(e) {\n  e.remove();\n  console.log(\"footer removed\");\n});",
+    "section": "Custom_Scripts",
+    "group": "Layout",
+    "public": true,
+    "secret": false,
+    "hidden": false,
+    "blocked": false,
+    "enterprise": false,
+    "env": false,
+    "autocomplete": true,
+    "sorter": 2
+  },
+  {
+    "_id": "Layout_Login_Template",
+    "_updatedAt": {
+      "$date": {
+        "$numberLong": "1685723681451"
+      }
+    },
+    "ts": {
+      "$date": {
+        "$numberLong": "1685722754341"
+      }
+    },
+    "i18nLabel": "Layout_Login_Template",
+    "i18nDescription": "Layout_Login_Template_Description",
+    "type": "select",
+    "valueSource": "packageValue",
+    "packageValue": "horizontal-template",
+    "value": "vertical-template",
+    "section": "Login",
+    "group": "Layout",
+    "public": true,
+    "secret": false,
+    "hidden": false,
+    "blocked": false,
+    "enterprise": true,
+    "env": false,
+    "autocomplete": true,
+    "sorter": 3
+  },
+  {
+    "_id": "Layout_Legal_Notice",
+    "_updatedAt": {
+      "$date": {
+        "$numberLong": "1685722754376"
+      }
+    },
+    "ts": {
+      "$date": {
+        "$numberLong": "1685722754376"
+      }
+    },
+    "i18nLabel": "Layout_Legal_Notice",
+    "i18nDescription": "Layout_Legal_Notice_Description",
+    "type": "code",
+    "valueSource": "packageValue",
+    "packageValue": "Legal Notice <br> Go to APP SETTINGS -> Layout to customize this page.",
+    "value": "Legal Notice <br> Go to APP SETTINGS -> Layout to customize this page.",
+    "section": "Layout_Home_Page_Content_Title",
+    "group": "Layout",
+    "public": true,
+    "secret": false,
+    "hidden": false,
+    "blocked": false,
+    "enterprise": false,
+    "env": false,
+    "autocomplete": true,
+    "sorter": 8
+  },
+  {
+    "_id": "Layout_Custom_Body_Only",
+    "_updatedAt": {
+      "$date": {
+        "$numberLong": "1689370754560"
+      }
+    },
+    "ts": {
+      "$date": {
+        "$numberLong": "1685722754360"
+      }
+    },
+    "i18nLabel": "Layout_Custom_Body_Only",
+    "i18nDescription": "Layout_Custom_Body_Only_Description",
+    "type": "boolean",
+    "valueSource": "packageValue",
+    "packageValue": false,
+    "value": true,
+    "section": "Layout_Home_Page_Content_Title",
+    "group": "Layout",
+    "public": true,
+    "secret": false,
+    "hidden": false,
+    "blocked": false,
+    "enterprise": true,
+    "env": false,
+    "autocomplete": true,
+    "sorter": 4
+  },
+  {
+    "_id": "Layout_Login_Hide_Title",
+    "_updatedAt": {
+      "$date": {
+        "$numberLong": "1685723663057"
+      }
+    },
+    "ts": {
+      "$date": {
+        "$numberLong": "1685722754335"
+      }
+    },
+    "i18nLabel": "Layout_Login_Hide_Title",
+    "i18nDescription": "Layout_Login_Hide_Title_Description",
+    "type": "boolean",
+    "valueSource": "packageValue",
+    "packageValue": false,
+    "value": true,
+    "section": "Login",
+    "group": "Layout",
+    "public": true,
+    "secret": false,
+    "hidden": false,
+    "blocked": false,
+    "enterprise": true,
+    "env": false,
+    "autocomplete": true,
+    "sorter": 1
+  },
+  {
+    "_id": "Layout_Login_Hide_Powered_By",
+    "_updatedAt": {
+      "$date": {
+        "$numberLong": "1685723663057"
+      }
+    },
+    "ts": {
+      "$date": {
+        "$numberLong": "1685722754338"
+      }
+    },
+    "i18nLabel": "Layout_Login_Hide_Powered_By",
+    "i18nDescription": "Layout_Login_Hide_Powered_By_Description",
+    "type": "boolean",
+    "valueSource": "packageValue",
+    "packageValue": false,
+    "value": true,
+    "section": "Login",
+    "group": "Layout",
+    "public": true,
+    "secret": false,
+    "hidden": false,
+    "blocked": false,
+    "enterprise": true,
+    "env": false,
+    "autocomplete": true,
+    "sorter": 2
+  },
+  {
+    "_id": "Number_of_users_autocomplete_suggestions",
+    "_updatedAt": {
+      "$date": {
+        "$numberLong": "1682540018243"
+      }
+    },
+    "ts": {
+      "$date": {
+        "$numberLong": "1682540018243"
+      }
+    },
+    "i18nLabel": "Number_of_users_autocomplete_suggestions",
+    "i18nDescription": "Number_of_users_autocomplete_suggestions_Description",
+    "type": "int",
+    "valueSource": "packageValue",
+    "packageValue": 5,
+    "value": 5,
+    "section": "User_Interface",
+    "group": "Layout",
+    "public": true,
+    "secret": false,
+    "hidden": false,
+    "blocked": false,
+    "enterprise": false,
+    "env": false,
+    "autocomplete": true,
+    "sorter": 5
+  },
+  {
+    "_id": "Layout_Home_Title",
+    "_updatedAt": {
+      "$date": {
+        "$numberLong": "1685722754347"
+      }
+    },
+    "ts": {
+      "$date": {
+        "$numberLong": "1685722754347"
+      }
+    },
+    "i18nLabel": "Layout_Home_Title",
+    "i18nDescription": "Layout_Home_Title_Description",
+    "type": "string",
+    "valueSource": "packageValue",
+    "packageValue": "Home",
+    "value": "Home",
+    "section": "Layout_Home_Page_Content_Title",
+    "group": "Layout",
+    "public": true,
+    "secret": false,
+    "hidden": false,
+    "blocked": false,
+    "enterprise": false,
+    "env": false,
+    "autocomplete": true,
+    "sorter": 0
+  },
+  {
+    "_id": "UI_DisplayRoles",
+    "_updatedAt": {
+      "$date": {
+        "$numberLong": "1682540018231"
+      }
+    },
+    "ts": {
+      "$date": {
+        "$numberLong": "1682540018231"
+      }
+    },
+    "i18nLabel": "UI_DisplayRoles",
+    "i18nDescription": "UI_DisplayRoles_Description",
+    "type": "boolean",
+    "valueSource": "packageValue",
+    "packageValue": true,
+    "value": true,
+    "section": "User_Interface",
+    "group": "Layout",
+    "public": true,
+    "secret": false,
+    "hidden": false,
+    "blocked": false,
+    "enterprise": false,
+    "env": false,
+    "autocomplete": true,
+    "sorter": 0
+  },
+  {
+    "_id": "Layout_Sidenav_Footer_Dark",
+    "_updatedAt": {
+      "$date": {
+        "$numberLong": "1685722754379"
+      }
+    },
+    "ts": {
+      "$date": {
+        "$numberLong": "1685722754379"
+      }
+    },
+    "i18nLabel": "Layout_Sidenav_Footer_Dark",
+    "i18nDescription": "Layout_Sidenav_Footer_description",
+    "type": "code",
+    "valueSource": "packageValue",
+    "packageValue": "<a href=\"/home\"><img src=\"assets/logo_dark.png\" alt=\"Home\" /></a>",
+    "value": "<a href=\"/home\"><img src=\"assets/logo_dark.png\" alt=\"Home\" /></a>",
+    "section": "Layout_Home_Page_Content_Title",
+    "group": "Layout",
+    "public": true,
+    "secret": false,
+    "hidden": false,
+    "blocked": false,
+    "enterprise": false,
+    "env": false,
+    "autocomplete": true,
+    "sorter": 9
+  },
+  {
+    "_id": "Layout_Login_Hide_Logo",
+    "_updatedAt": {
+      "$date": {
+        "$numberLong": "1685723674021"
+      }
+    },
+    "ts": {
+      "$date": {
+        "$numberLong": "1685722754332"
+      }
+    },
+    "i18nLabel": "Layout_Login_Hide_Logo",
+    "i18nDescription": "Layout_Login_Hide_Logo_Description",
+    "type": "boolean",
+    "valueSource": "packageValue",
+    "packageValue": false,
+    "value": true,
+    "section": "Login",
+    "group": "Layout",
+    "public": true,
+    "secret": false,
+    "hidden": false,
+    "blocked": false,
+    "enterprise": true,
+    "env": false,
+    "autocomplete": true,
+    "sorter": 0
+  }
+]

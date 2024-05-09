@@ -4,6 +4,7 @@ use dotenv::dotenv;
 
 use crate::models::permission_model::Permission;
 use crate::models::role_model::Role;
+use crate::models::sdui_model::Sdui;
 use crate::models::room_model::Room;
 use crate::models::user_model::User;
 use chrono::{TimeZone, Utc};
@@ -20,8 +21,8 @@ pub struct MongoRepo {
     rolecol: Collection<Role>,
     permcol: Collection<Permission>,
     roomcol: Collection<Room>,
-    // roomcolraw: Collection<Document>,
-    // usercolraw: Collection<Document>,
+    sduicol: Collection<Sdui>,
+    acolraw: Collection<Document>,
 }
 
 impl MongoRepo {
@@ -31,21 +32,25 @@ impl MongoRepo {
             Ok(v) => v.to_string(),
             Err(_) => format!("Error loading env variable"),
         };
+        let cn = match env::var("COLLECTION") {
+            Ok(v) => v.to_string(),
+            Err(_) => format!("Error loading env variable"),
+        };
         let client = Client::with_uri_str(uri).unwrap();
         let db = client.database("rocketchat");
         let usercol: Collection<User> = db.collection("users");
         let rolecol: Collection<Role> = db.collection("rocketchat_roles");
         let permcol: Collection<Permission> = db.collection("rocketchat_permissions");
         let roomcol: Collection<Room> = db.collection("rocketchat_room");
-        // let roomcolraw: Collection<Document> = db.collection("rocketchat_room");
-        // let usercolraw: Collection<Document> = db.collection("users");
+        let sduicol: Collection<Sdui> = db.collection("rocketchat_settings");
+        let acolraw: Collection<Document> = db.collection(&cn);
         MongoRepo {
             usercol,
             permcol,
             rolecol,
             roomcol,
-            // roomcolraw,
-            // usercolraw,
+            sduicol,
+            acolraw,
         }
     }
 
@@ -123,6 +128,17 @@ impl MongoRepo {
         Ok(rooms)
     }
 
+    pub fn get_all_docs(&self) -> Result<Vec<Document>, Error> {
+        // let filter = doc! { "$nor": [ { "year": 2023 }, { "year": 2022 }, { "month": 3 }, { "day": 3 } ]};
+        let cursors = self
+            .acolraw
+            .find(None, None)
+            .ok()
+            .expect("Error getting list of docs");
+        let docs = cursors.map(|doc| doc.unwrap()).collect();
+        Ok(docs)
+    }
+
 
     pub fn get_all_roles(&self) -> Result<Vec<Role>, Error> {
         let cursors = self
@@ -132,6 +148,17 @@ impl MongoRepo {
             .expect("Error getting list of roles");
         let roles = cursors.map(|doc| doc.unwrap()).collect();
         Ok(roles)
+    }
+
+    pub fn get_full_layout(&self) -> Result<Vec<Sdui>, Error> {
+        let filter = doc! { "group": "Layout" };
+        let cursors = self
+            .sduicol
+            .find(filter, None)
+            .ok()
+            .expect("Error getting list of layout elements");
+        let layout = cursors.map(|doc| doc.unwrap()).collect();
+        Ok(layout)
     }
 
     pub fn get_all_permissions(&self) -> Result<Vec<Permission>, Error> {
