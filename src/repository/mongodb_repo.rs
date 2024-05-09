@@ -8,7 +8,7 @@ use crate::models::room_model::Room;
 use crate::models::user_model::User;
 use chrono::{TimeZone, Utc};
 use mongodb::{
-    bson::doc,
+    bson::{doc, Document},
     options::FindOptions,
     bson::extjson::de::Error,
     sync::{Client, Collection},
@@ -20,6 +20,8 @@ pub struct MongoRepo {
     rolecol: Collection<Role>,
     permcol: Collection<Permission>,
     roomcol: Collection<Room>,
+    // roomcolraw: Collection<Document>,
+    // usercolraw: Collection<Document>,
 }
 
 impl MongoRepo {
@@ -35,11 +37,15 @@ impl MongoRepo {
         let rolecol: Collection<Role> = db.collection("rocketchat_roles");
         let permcol: Collection<Permission> = db.collection("rocketchat_permissions");
         let roomcol: Collection<Room> = db.collection("rocketchat_room");
+        // let roomcolraw: Collection<Document> = db.collection("rocketchat_room");
+        // let usercolraw: Collection<Document> = db.collection("users");
         MongoRepo {
             usercol,
             permcol,
             rolecol,
             roomcol,
+            // roomcolraw,
+            // usercolraw,
         }
     }
 
@@ -72,6 +78,7 @@ impl MongoRepo {
     }
 
     pub fn get_all_users(&self) -> Result<Vec<User>, Error> {
+    // pub fn get_all_users(&self) -> Result<Vec<Document>, Error> {
         let trashold = Utc.ymd(2024,1,1).and_hms_opt(0,0,0);
         let filter =
             doc! { "$nor": [ 
@@ -95,6 +102,7 @@ impl MongoRepo {
     }
 
     pub fn get_all_rooms(&self) -> Result<Vec<Room>, Error> {
+    // pub fn get_all_rooms(&self) -> Result<Vec<Document>, Error> {
         let trashold = Utc.ymd(2024,4,1).and_hms_opt(0,0,0);
         let filter =
             doc! { "$nor": [ 

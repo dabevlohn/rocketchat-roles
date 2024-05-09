@@ -1,5 +1,6 @@
 use crate::{models::user_model::User, repository::mongodb_repo::MongoRepo};
 use rocket::{http::Status, serde::json::Json, State};
+// use mongodb::bson::Document;
 // use mongodb::results::InsertOneResult;
 
 /*
@@ -37,6 +38,7 @@ pub fn get_user(db: &State<MongoRepo>, path: String) -> Result<Json<User>, Statu
 
 #[get("/users")]
 pub fn get_all_users(db: &State<MongoRepo>) -> Result<Json<Vec<User>>, Status> {
+// pub fn get_all_users(db: &State<MongoRepo>) -> Result<Json<Vec<Document>>, Status> {
     let users = db.get_all_users();
     match users {
         Ok(users) => Ok(Json(users)),
