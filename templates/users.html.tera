@@ -6,6 +6,10 @@
         <tr>
             <th>ID</th>
             <th>Username</th>
+            <th>Name, Fields</th>
+            <th>Roles</th>
+            <th>Emails</th>
+            <th>Status</th>
         </tr>
     </thead>
     <tbody id="users-content">

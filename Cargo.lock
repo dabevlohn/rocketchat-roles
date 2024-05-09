@@ -2211,7 +2211,7 @@ dependencies = [
 
 [[package]]
 name = "rocketmongoman"
-version = "0.1.1"
+version = "0.1.2"
 dependencies = [
  "bson",
  "chrono",

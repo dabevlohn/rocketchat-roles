@@ -11,7 +11,7 @@ mod tests;
 use api::{
     permission_api::get_all_permissions,
     rawdoc_api::get_all_docs,
-    role_api::get_all_roles,
+    role_api::{get_all_roles, get_role},
     room_api::get_all_rooms,
     sdui_api::get_full_layout,
     user_api::{get_all_users, get_user, index},
@@ -32,6 +32,7 @@ fn rocket() -> _ {
     rocket::build()
         .manage(mdb)
         .mount("/", routes![get_user])
+        .mount("/", routes![get_role])
         .mount("/", routes![get_all_users])
         .mount("/", routes![get_all_roles])
         .mount("/", routes![get_all_rooms])

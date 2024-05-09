@@ -1,5 +1,14 @@
 <!-- templates/user.html -->
+
 <tr id="user-{{ user._id }}">
     <td> <a href="/user/{{user._id}}"> {{ user._id }} </a></td>
     <td id="username-{{user._id}}"> {{ user.username }} </td>
+    <td> 
+       {{user.name}} 
+       {# if user.custom_fields is defined #}
+       {# endif #}
+    </td>
+    <td> {% for e in user.roles %} <a href="/role/{{e}}">{{e}}</a> {% endfor %}</td>
+    <td> {% for e in user.emails %} {{e.address}} {% endfor %}</td>
+    <td> {{user.status}}</td>
 </tr>

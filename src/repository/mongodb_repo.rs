@@ -146,6 +146,17 @@ impl MongoRepo {
         Ok(roles)
     }
 
+    pub fn get_role(&self, id: &String) -> Result<Role, Error> {
+        let filter = doc! {"_id": id};
+        let role = self
+            .rolecol
+            .find_one(filter, None)
+            .ok()
+            .expect("Error getting role's detail");
+        Ok(role.unwrap())
+    }
+
+
     pub fn get_full_layout(&self) -> Result<Vec<Sdui>, Error> {
         let filter = doc! { "group": "Layout" };
         let cursors = self
