@@ -10,16 +10,17 @@ mod tests;
 
 use api::{
     permission_api::get_all_permissions,
-    sdui_api::get_full_layout,
-    role_api::get_all_roles,
     rawdoc_api::get_all_docs,
+    role_api::get_all_roles,
     room_api::get_all_rooms,
-    user_api::{get_all_users, get_user},
+    sdui_api::get_full_layout,
+    user_api::{get_all_users, get_user, index},
 };
 use repository::{localdb_repo::LocalRepo, mongodb_repo::MongoRepo};
 use rocket::{get, http::Status, serde::json::Json};
+use rocket_dyn_templates::Template;
 
-#[get("/")]
+#[get("/hello")]
 fn hello() -> Result<Json<String>, Status> {
     Ok(Json(String::from("Hello world")))
 }
@@ -38,4 +39,6 @@ fn rocket() -> _ {
         .mount("/", routes![get_all_docs])
         .mount("/", routes![get_all_permissions])
         .mount("/", routes![hello])
+        .mount("/", routes![index])
+        .attach(Template::fairing())
 }

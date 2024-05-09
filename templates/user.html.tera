@@ -1,0 +1,5 @@
+<!-- templates/user.html -->
+<tr id="user-{{ user._id }}">
+    <td> <a href="/user/{{user._id}}"> {{ user._id }} </a></td>
+    <td id="username-{{user._id}}"> {{ user.username }} </td>
+</tr>

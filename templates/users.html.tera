@@ -1,0 +1,17 @@
+<!-- templates/users.html -->
+<h1>Users</h1>
+<div id="users">
+<table>
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Username</th>
+        </tr>
+    </thead>
+    <tbody id="users-content">
+        {% for user in users %}
+            {% include "user" %}
+        {% endfor %}
+    </tbody>
+</table>
+</div>

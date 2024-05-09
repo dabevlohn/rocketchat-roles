@@ -1,0 +1,19 @@
+<!-- templates/base.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	{#
+    <script src="https://unpkg.com/htmx.org@1.9.12" 
+		integrity="sha384-ujb1lZYygJmzgSwoxRggbCHcjc0rB2XoQrxeTUQyRjrOnlCoYta87iKBWq3EsdM2" 
+		crossorigin="anonymous"></script>
+    #}
+    <title>Index</title>
+    {% block head %}{% endblock head %}
+</head>
+    <body>
+        <div id="content">
+				{% block content %}
+				{% endblock content%}
+        </div>
+    </body>
+</html>
