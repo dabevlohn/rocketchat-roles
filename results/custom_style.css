@@ -1,0 +1,397 @@
+--black-text-color: #242729;
+/******************************************
+ *************Circle Avatars*************
+ ******************************************/
+
+body.dark-mode .rcx-avatar__element {
+ border-radius: 100%;
+}
+
+body.dark-mode .avatar .avatar-image {
+ border-radius: 100%;
+}
+
+body .rcx-avatar__element {
+ border-radius: 100%;
+}
+
+body .avatar .avatar-image {
+ border-radius: 100%;
+}
+
+/******************************************
+ *************Bubble style*************
+ ******************************************/
+body .rcx-box.rcx-box--full.rcx-message-container:not(.rcx-message-container--left){
+ border-radius: 1.15rem;
+ line-height: 1.25;
+ max-width: calc(83% - 140px);
+ padding: 0.5rem .875rem;
+ position: relative;
+ word-wrap: break-word; 
+ align-items: flex-start;
+ /*background-color: var(--rcx-color-button-background-secondary-danger-focus,var(--own-true-light-color));*/
+}
+
+/*Перенос ФИО выше цитат */
+.rcx-message-header, .rcx-message-header__wrapper{
+ order: -1;
+}
+
+/* "Ушко" сообщений */
+/* 
+body .rcx-box.rcx-box--full.rcx-message-container:not(.rcx-message-container--left)::before{
+ 
+ content: "";
+ height: 17px;
+ position: absolute;
+ 
+}
+*/
+/*******************/
+
+
+/* переносим цитату наверх */
+
+body .rcx-box .rcx-box--full .rcx-message-container > div:has(blockquote) {
+ order: -1;
+}
+
+body .rcx-box .rcx-box--full .rcx-message-container > div:has(blockquote) > blockquote {
+ padding-top: 0 !important;
+ padding-bottom: 0 !important;
+}
+/**************************/
+
+/* убираем полоску разделителя по дням */
+
+body .rcx-message-divider__bar::after {
+ content: none !important;
+}
+body .rcx-message-divider__wrapper {
+ border-radius: 16px !important;
+ padding: 2px 18px;
+ font-size: 15px;
+ line-height: 18px;
+ background-color: #f4f4f4 !important;
+ color: #242729;
+}
+body ul.messages-list > div.rcx-message-divider {
+ margin: 20px !important;
+}
+/**************************************/
+
+/* не знаю, что этот и следующий блок стилей делают */
+body .rcx-message[data-own="false"]:not(.rcx-message--sequential) > .rcx-box.rcx-box--full.rcx-message-container:not(.rcx-message-container--left)::before{
+ border: 0.4rem solid var(--rcx-color-button-background-secondary-danger-hover,var(--own-false-light-color));
+ left: -0.35rem;
+ transform: translate(0, -0.2rem);
+ border-top-right-radius: 0.8rem;
+ border-bottom-left-radius: 2.2rem;
+
+}
+body .rcx-message[data-own="true"]:not(.rcx-message--sequential) > .rcx-box.rcx-box--full.rcx-message-container:not(.rcx-message-container--left)::before{
+ border-right: var(--befort-border-radius1,0.8rem) solid var(--rcx-color-button-background-secondary-danger-focus,var(--own-true-light-color));
+ right: var(--before-arrow,auto);
+ left: var(--before-auto,-0.35rem);
+ transform: translate(0, -0.2rem);
+ border-top-right-radius: var(--befort-border-radius1,unset);
+ border-bottom-right-radius: var(--befort-border-radius2,innerit);
+ /*border-top-left-radius: var(--before-unset,1.8rem);
+ border-bottom-left-radius: var(--before-unset,0.2rem);
+ border-top-right-radius: var(--before-initial,0.8rem);*/
+ border-bottom-left-radius: var(--before-initial,2.2rem);
+ bottom: var(--before-01em, unset); /* для своих показываем внизу */
+ /*
+ --before-unset: unset;
+ --befort-border-radius: 1.8rem;
+ --befort-border-radius: 0.2rem;
+ --before-arrow: -0.35rem;
+ */
+}
+/***************************************************/
+body .rcx-message{
+ --own-true-light-color: #cde3ff;
+ --own-false-light-color: #ffffff; 
+ /*
+ --own-true-dark-color: #2b5278;
+ --own-false-dark-color: #182533;
+ --message-background-dark-color: #0e1621;
+ */
+}
+
+/* Контент сообщения к низу */
+body .rcx-message { 
+ align-items: var(--flex-dir-flex-end, normal)!important; /* для своих показываем аватарки внизу */
+}
+/****************************/
+
+/* Разделение сообщение лево/право */
+body .rcx-message[data-own="true"]{
+ flex-direction: var(--flex-dir-row-reverse,row)!important;
+}
+/***********************************/
+
+/* Чужие сообщения */
+ /* Цвет фона бабла */
+body .rcx-message[data-own="false"] > .rcx-box.rcx-box--full.rcx-message-container:not(.rcx-message-container--left) {
+ /* background-color: var(--rcx-color-button-background-secondary-danger-hover,rgba(255, 255, 255, 0.6)); */
+ background-color: var(--rcx-color-button-background-secondary-danger-hover,#eff5fd); 
+}
+ /* Цвет текста */
+body .rcx-message[data-own="true"] > .rcx-box.rcx-box--full.rcx-message-container:not(.rcx-message-container--left) > .rcx-message-body {
+ color: --black-text-color;
+}
+
+/*цвет ссылок для своих и подчеркивание*/
+body .rcx-message[data-own="true"] > .rcx-box.rcx-box--full.rcx-message-container:not(.rcx-message-container--left) > .rcx-message-body div div a {
+ /* color: var(--rcx-color-font-info, var(--rcx-color-primary-600, #ffffff));
+ text-decoration: underline; */
+}
+
+ /* Стили фона сообщения при фокусе */
+body .rcx-message[data-own="false"]:hover, body .rcx-message:focus {
+ /* background: var(--rcx-message-background-color-focus, var(--rcx-color-surface-hover, var(--rcx-color-neutral-200, #ABC7F4)))
+*/
+}
+/******************/
+
+/* Свои сообщения */
+ /* Цвет фона бабла */
+body .rcx-message[data-own="true"] > .rcx-box.rcx-box--full.rcx-message-container:not(.rcx-message-container--left) {
+ background-color: var(--rcx-color-button-background-secondary-danger-hover,#d8e7ff); 
+}
+ /* Цвет текста */
+body .rcx-message[data-own="true"] > .rcx-box.rcx-box--full.rcx-message-container:not(.rcx-message-container--left) > .rcx-message-body {
+ /*color: var(--black-text-color,#fff) !important; */
+}
+ /* Стили имени */
+body .rcx-message[data-own="true"] > .rcx-box.rcx-box--full.rcx-message-container:not(.rcx-message-container--left) > .rcx-message-header > .rcx-message-header__wrapper > .rcx-message-header__name-container > span {
+ /*color: var(--black-text-color, #fff) !important; */
+}
+
+ /* Стили фона сообщения при фокусе */
+body .rcx-message[data-own="true"]:hover, body .rcx-message:focus {
+ background: var(--rcx-message-background-color-focus, var(--rcx-color-surface-hover, var(--rcx-color-neutral-200, #ABC7F4)))
+}
+/********************/
+
+/* Системные сообщения по центру */
+body .rcx-box .rcx-box--full .rcx-message-system {
+ display: flex;
+ justify-content: center;
+}
+
+body .rcx-box .rcx-box--full .rcx-message-system > .rcx-message-system__container {
+ width: auto;
+}
+/*********************************/
+
+/* Аватакрки внизу, отключил из-за логики*/
+/*
+body .rcx-message{
+ align-items: flex-end;
+ 
+}
+*/
+
+
+/* Фиксим ширину на динамику */
+body .rcx-message-container{
+ flex-grow: 0; 
+}
+
+/* Галка внизу и время */
+body .rcx-message-container > div:not(.rcx-message-body):not(.rcx-message-header) { 
+ inset-block-start: unset !important;
+ /*inset-inline-end: unset !important;*/
+ /*bottom: 10px; */
+ right: 5px; 
+}
+body .rcx-message > .rcx-box.rcx-box--full.rcx-message-container:not(.rcx-message-container--left) div:has( > i.rcx-icon){
+ bottom: 10px;
+}
+body .rcx-message-header__time {
+ right: 25px;
+ bottom: 10px;
+ position: absolute;
+}
+body .rcx-message > .rcx-box.rcx-box--full.rcx-message-container:not(.rcx-message-container--left) {
+ padding-right: 85px;
+}
+body .rcx-message[data-sequential='true'] > .rcx-box.rcx-box--full.rcx-message-container:not(.rcx-message-container--left) {
+ padding-right: 30px;
+}
+/* Цвет галки */
+body .rcx-message[data-own="true"] > .rcx-box.rcx-box--full.rcx-message-container:not(.rcx-message-container--left) > div:not(.rcx-message-body):not(.rcx-message-header) > i {
+ /* color: var(--rcx-color-font-info, rgba(255, 255, 255, 0.6)) !important; */
+}
+body .rcx-message[data-own="false"] > .rcx-box.rcx-box--full.rcx-message-container:not(.rcx-message-container--left) > div:not(.rcx-message-body):not(.rcx-message-header) > i {
+ color: var(--rcx-color-font-info, var(--rcx-color-primary-600, #095AD2)) !important; 
+}
+
+/* Стили кнопок реакции */
+ /* переносим меню ближе */
+body .rcx-message .rcx-message-toolbox {
+ right: auto;
+ top: 0;
+ 
+}
+body .rcx-message:hover .rcx-box.rcx-box--full.rcx-message-toolbox__wrapper {
+ /* display: var(--flex-dir-flex,initial); */
+ display: flex;
+ flex-direction: var(--flex-dir-row-reverse,row)!important; 
+ align-items: flex-start;
+}
+body .rcx-message .rcx-message-toolbox {
+ position: sticky;
+}
+/**************************/
+
+
+/* Контейнер с сообщениями цвет фона */
+body div .main-content-flex {
+ /* background-color: var(--rcx-color-surface-room, #D8E5FA) !important; */
+}
+/***************************/
+
+
+/* ToDo: Поправить на нормальный селектор */
+body .rcx-css-1rdomle:has( > aside.rcx-box.rcx-box--full.rcx-vertical-bar) {
+ --flex-dir-row-reverse: row-reverse;
+ /*--flex-dir-flex-end: flex-end; */ 
+ --flex-dir-flex: flex;
+ --before-unset: unset;
+ --before-initial: initial;
+ --before-auto: auto;
+ --befort-border-radius1: 1.8rem;
+ --befort-border-radius2: 0.2rem;
+ --befort-border-radius3: 0.8rem;
+ --before-arrow: -0.35rem;
+ --before-01em: 0.1em;
+}
+body aside.rcx-box.rcx-box--full.rcx-vertical-bar .rcx-message-header__time {
+ right: auto;
+ bottom: auto;
+ position: relative;
+}
+body aside.rcx-vertical-bar .rcx-message-container:not(.rcx-message-container--left) {
+ max-width:90%!important;
+ padding-right: 30px!important;
+ overflow: hidden;
+}
+body aside.rcx-vertical-bar .rcx-message[data-own="false"] > .rcx-box.rcx-box--full.rcx-message-container:not(.rcx-message-container--left) {
+ background-color: var(--rcx-color-button-background-secondary-danger-hover,#f0f0f0);
+}
+body aside.rcx-vertical-bar .rcx-message .rcx-message-toolbox {
+ position: absolute;
+ right: 10px;
+}
+
+body .rcx-message > .rcx-box.rcx-box--full.rcx-message-container:not(.rcx-message-container--left):has(.rcx-message-body div div[role="presentation"]){
+ background: none !important;
+
+}
+/*двигаем смайлик и реакции вправо */
+body .rcx-css-1rdomle:has( > aside.rcx-box.rcx-box--full.rcx-vertical-bar) .rcx-message[data-own='true'] > .rcx-box.rcx-box--full.rcx-message-container:not(.rcx-message-container--left):has(.rcx-message-body div div[role="presentation"]) .rcx-message-body,
+body .rcx-css-1rdomle:has( > aside.rcx-box.rcx-box--full.rcx-vertical-bar) .rcx-message[data-own='true'] > .rcx-box.rcx-box--full.rcx-message-container:not(.rcx-message-container--left):has(.rcx-message-body div div[role="presentation"]) .rcx-message-block{
+ align-self: flex-end;
+}
+body .rcx-message[data-own='true'] > .rcx-box.rcx-box--full.rcx-message-container:not(.rcx-message-container--left):has(.rcx-message-body div div[role="presentation"]) > .rcx-message-header > .rcx-message-header__wrapper > span > span {
+ color:var(--black-text-color) !important;
+}
+
+/* fix цитат */
+/* ToDo: Поправить на нормальный селектор */
+body .rcx-css-8baznz {
+ /* border-radius: 0 10px 10px 0px!important; */
+ background: none!important;
+ border-color: initial!important;
+ border-left-width: 0.2rem !important;
+ border-right-width: 0 !important;
+ border-top-width: 0 !important;
+ border-bottom-width: 0 !important;
+}
+
+/* Фикс стилей цитаты в своих сообщениях */
+body .rcx-message[data-own='true'] > .rcx-message-container:not(.rcx-message-container--left) > .rcx-attachment__content > blockquote > div * {
+ /* color: rgba(255, 255, 255, 0.6) !important; */
+}
+
+/* Полоска цитаты - отключаю*/
+body .rcx-message[data-own='true'] > .rcx-message-container:not(.rcx-message-container--left) > .rcx-attachment__content > blockquote {
+ /*border-color: rgba(255, 255, 255, 0.8) !important; */
+}
+/*****************************************/
+
+/* Фикс штуковины для тредов (колокольчики и прочая шляпа) */
+body .rcx-message[data-own='true'] > .rcx-message-container:not(.rcx-message-container--left) > .rcx-message-block > div {
+ color: rgba(255, 255, 255, 0.8);
+}
+
+@media (max-width: 1279.98px) {
+ /* ToDo: Поправить на нормальный селектор */
+ body .main-content {
+ --flex-dir-row-reverse: row-reverse;
+ /* --flex-dir-flex-end: flex-end; */ 
+ --flex-dir-flex: flex;
+ --before-unset: unset;
+ --before-initial: initial;
+ --before-auto: auto;
+ --befort-border-radius1: 1.8rem;
+ --befort-border-radius2: 0.2rem;
+ --befort-border-radius3: 0.8rem;
+ --before-arrow: -0.35rem;
+ --before-01em: 0.1em;
+ }
+ /*двигаем смайлик и реакции вправо */
+ body .rcx-message[data-own='true'] > .rcx-box.rcx-box--full.rcx-message-container:not(.rcx-message-container--left):has(.rcx-message-body div div[role="presentation"]) .rcx-message-body,
+ body .rcx-message[data-own='true'] > .rcx-box.rcx-box--full.rcx-message-container:not(.rcx-message-container--left):has(.rcx-message-body div div[role="presentation"]) .rcx-message-block{
+ align-self: flex-end;
+ }
+ /* убираем обрезку на 140 пикселей */
+ body .rcx-box.rcx-box--full.rcx-message-container:not(.rcx-message-container--left) {
+ max-width:80%;
+ }
+ /*Фиксируем для узких тулбокс */
+ body .rcx-message[data-own='false'] .rcx-message-toolbox {
+ position: absolute;
+ right: 10px;
+ }
+ body .rcx-message[data-own='true'] .rcx-message-toolbox {
+ position: absolute;
+ left: 10px;
+ }
+
+}
+
+/* Большие эмодзи */
+body div[role="presentation"] span .rcx-message__emoji--big {
+ height: 4.75rem;
+ width: 4.75rem;
+}
+
+/*****************/
+body .rcx-message-reactions__reaction{
+ border-radius: var(--rcx-message-reaction-border-radius,var(--rcx-border-radius-medium,.65rem));
+ padding: 0.175rem;
+ background-color: var(--rcx-color-button-background-secondary-danger-hover,#f7f8fa);
+ /* background-color: var(--rcx-message-reaction-hover-background-color,var(--rcx-color-surface-tint,var(--rcx-color-neutral-100,#f7f8fa))); */
+}
+
+
+body .rcx-message[data-own='true'] > .rcx-message-container:not(.rcx-message-container--left) > .rcx-message-block > .rcx-message-reactions__container > .rcx-message-reactions__reaction {
+ border-radius: var(--rcx-message-reaction-border-radius,var(--rcx-border-radius-medium,.65rem));
+ padding: 0.175rem;
+ background-color: var(--rcx-color-button-background-secondary-danger-hover,#fff) !important;
+ /* background-color: var(--rcx-message-reaction-hover-background-color,var(--rcx-color-surface-tint,var(--rcx-color-neutral-100,#f7f8fa))); */
+}
+
+/* Замена голосовалки */
+body .rcx-box.rcx-box--full.rcx-message-block--width-fixed.rcx-message-block span code.code-colors.inline {
+ background: -webkit-linear-gradient(327deg, #e3f2fff7 -15%, #6ebaf9f7 50%, #267cf5f7 135%);
+ background-clip: text;
+ -webkit-background-clip: text;
+ -webkit-text-fill-color: transparent;
+ letter-spacing: -0.05rem;
+}
