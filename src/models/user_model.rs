@@ -40,7 +40,7 @@ pub struct User {
     name: Option<String>,
     roles: Vec<String>,
     services: Option<Service>,
-    status: String,
+    pub status: String,
     pub emails: Option<Vec<Email>>,
     active: bool,
     ldap: Option<bool>,

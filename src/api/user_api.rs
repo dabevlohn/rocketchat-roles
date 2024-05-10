@@ -46,6 +46,19 @@ pub fn get_user(db: &State<MongoRepo>, path: String) -> Result<Json<User>, Statu
     }
 }
 
+#[get("/user/<path>/status")]
+pub fn get_user_status(db: &State<MongoRepo>, path: String) -> Result<String, Status> {
+    let id = path;
+    if id.is_empty() {
+        return Err(Status::BadRequest);
+    };
+    let user = db.get_user(&id);
+    match user {
+        Ok(user) => Ok(user.status.to_string()),
+        Err(_) => Err(Status::InternalServerError),
+    }
+}
+
 #[get("/user/<path>/email")]
 pub fn get_user_email(db: &State<MongoRepo>, path: String) -> Result<String, Status> {
     let id = path;

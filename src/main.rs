@@ -14,7 +14,7 @@ use api::{
     role_api::{get_all_roles, get_role},
     room_api::get_all_rooms,
     sdui_api::get_full_layout,
-    user_api::{get_all_users, get_user, get_user_email, index},
+    user_api::{get_all_users, get_user, get_user_email, get_user_status, index},
 };
 use repository::{localdb_repo::LocalRepo, mongodb_repo::MongoRepo};
 use rocket::{
@@ -43,6 +43,7 @@ fn rocket() -> _ {
             routes![
                 get_user,
                 get_user_email,
+                get_user_status,
                 get_role,
                 get_all_users,
                 get_all_roles,

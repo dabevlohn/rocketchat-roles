@@ -13,16 +13,23 @@
 				{% for e in user.roles %} <a href="/role/{{e}}">{{e}}</a> {% endfor %}
 		{% endif %}
 	</td>
-    <td id="email-{{user._id}}"
-		hx-trigger="load delay:2s"
-		hx-swap="outerHTML"
+    <td hx-trigger="load delay:2s"
 		hx-get="/user/{{user._id}}/email"
-		hx-target="this"
-	> 
+		hx-target="#email-{{user._id}}"> 
+
+		<span id="email-{{user._id}}">
 		loading...
 		{% if user.emails is object %}
 				{% for e in user.emails %} {{e.address}} {% endfor %}
 		{% endif %}
+		</span>
 	</td>
-    <td> {{user.status}}</td>
+    <td hx-trigger="every 5s"
+		hx-get="/user/{{user._id}}/status"
+		hx-target="#status-{{user._id}}"> 
+
+		<span id="status-{{user._id}}">
+		{{user.status}}
+		</span>
+	</td>
 </tr>
