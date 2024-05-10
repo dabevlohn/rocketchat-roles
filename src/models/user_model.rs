@@ -27,9 +27,9 @@ struct Service {
 }
 
 #[derive(Debug, Serialize, Deserialize)]
-struct Email {
-    address: String,
-    verified: Option<bool>,
+pub struct Email {
+    pub address: String,
+    pub verified: Option<bool>,
 }
 
 #[derive(Debug, Serialize, Deserialize)]
@@ -41,7 +41,7 @@ pub struct User {
     roles: Vec<String>,
     services: Option<Service>,
     status: String,
-    emails: Option<Vec<Email>>,
+    pub emails: Option<Vec<Email>>,
     active: bool,
     ldap: Option<bool>,
     #[serde(rename = "importIds")]

@@ -9,11 +9,17 @@
 		{% endif %}
     </td>
     <td> 
-		{% if user.roles is object %}
+		{% if user.roles is defined %}
 				{% for e in user.roles %} <a href="/role/{{e}}">{{e}}</a> {% endfor %}
 		{% endif %}
 	</td>
-    <td> 
+    <td id="email-{{user._id}}"
+		hx-trigger="load delay:2s"
+		hx-swap="outerHTML"
+		hx-get="/user/{{user._id}}/email"
+		hx-target="this"
+	> 
+		loading...
 		{% if user.emails is object %}
 				{% for e in user.emails %} {{e.address}} {% endfor %}
 		{% endif %}

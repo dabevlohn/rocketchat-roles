@@ -46,6 +46,23 @@ pub fn get_user(db: &State<MongoRepo>, path: String) -> Result<Json<User>, Statu
     }
 }
 
+#[get("/user/<path>/email")]
+pub fn get_user_email(db: &State<MongoRepo>, path: String) -> Result<String, Status> {
+    let id = path;
+    if id.is_empty() {
+        return Err(Status::BadRequest);
+    };
+    let user = db.get_user(&id);
+    match user {
+        Ok(user) => Ok(if let Some(email) = user.emails.unwrap().first() {
+            email.address.to_string()
+        } else {
+            "None".to_string()
+        }),
+        Err(_) => Err(Status::InternalServerError),
+    }
+}
+
 #[get("/users")]
 pub fn get_all_users(db: &State<MongoRepo>) -> Result<Json<Vec<User>>, Status> {
     let users = db.get_all_users_obj();
