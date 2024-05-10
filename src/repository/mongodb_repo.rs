@@ -2,12 +2,11 @@ use std::env;
 extern crate dotenv;
 use dotenv::dotenv;
 
-use crate::models::permission_model::Permission;
-use crate::models::role_model::Role;
-use crate::models::room_model::Room;
-use crate::models::sdui_model::Sdui;
-use crate::models::user_model::User;
-use chrono::{TimeZone, Utc};
+use crate::models::{
+    permission_model::Permission, role_model::Role, room_model::Room, sdui_model::Sdui,
+    user_model::User,
+};
+// use chrono::{TimeZone, Utc};
 use mongodb::{
     bson::extjson::de::Error,
     bson::{doc, Document},
@@ -83,6 +82,7 @@ impl MongoRepo {
     }
 
     pub fn get_all_users_obj(&self) -> Result<Vec<User>, Error> {
+        /*
         let trashold = Utc.ymd(2024, 1, 1).and_hms_opt(0, 0, 0);
         let filter = doc! { "$nor": [
             { "roles": { "$exists": false } },
@@ -95,9 +95,10 @@ impl MongoRepo {
             { "lastLogin": { "$lt": trashold } },
             { "emails.verified": false }
         ] };
+        */
         let cursors = self
             .usercol
-            .find(filter, None)
+            .find(None, None)
             .ok()
             .expect("Error getting list of users");
         let users = cursors.map(|doc| doc.unwrap()).collect();
@@ -105,13 +106,12 @@ impl MongoRepo {
     }
 
     pub fn get_all_rooms(&self) -> Result<Vec<Room>, Error> {
-        let trashold = Utc.ymd(2024, 4, 1).and_hms_opt(0, 0, 0);
+        // let trashold = Utc.ymd(2024, 4, 1).and_hms_opt(0, 0, 0);
         let filter = doc! { "$nor": [
             { "usersCount": { "$exists": false } },
             { "usersCount": { "$lt": 2 } },
             { "msgs": { "$exists": false } },
-            { "msgs": { "$lt": 1 } },
-            { "_updatedAt": { "$lt": trashold } }
+            { "msgs": { "$lt": 1 } }
         ] };
         let find_options = FindOptions::builder()
             .sort(doc! { "msgs": 1, "usersCount": 1 })
@@ -155,7 +155,6 @@ impl MongoRepo {
             .expect("Error getting role's detail");
         Ok(role.unwrap())
     }
-
 
     pub fn get_full_layout(&self) -> Result<Vec<Sdui>, Error> {
         let filter = doc! { "group": "Layout" };

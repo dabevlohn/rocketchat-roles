@@ -4,8 +4,15 @@ use rocket::local::blocking::Client;
 #[test]
 fn hello() {
     let client = Client::tracked(super::rocket()).unwrap();
-    let response = client.get("/").dispatch();
+    let response = client.get("/hello").dispatch();
     assert_eq!(response.into_string(), Some("\"Hello world\"".into()));
+}
+
+#[test]
+fn index() {
+    let client = Client::tracked(super::rocket()).unwrap();
+    let response = client.get("/").dispatch();
+    assert_eq!(response.status(), Status::Ok);
 }
 
 #[test]

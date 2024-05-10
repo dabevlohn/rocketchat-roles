@@ -31,15 +31,20 @@ fn rocket() -> _ {
     let mdb = MongoRepo::init();
     rocket::build()
         .manage(mdb)
-        .mount("/", routes![get_user])
-        .mount("/", routes![get_role])
-        .mount("/", routes![get_all_users])
-        .mount("/", routes![get_all_roles])
-        .mount("/", routes![get_all_rooms])
-        .mount("/", routes![get_full_layout])
-        .mount("/", routes![get_all_docs])
-        .mount("/", routes![get_all_permissions])
-        .mount("/", routes![hello])
-        .mount("/", routes![index])
+        .mount(
+            "/",
+            routes![
+                get_user,
+                get_role,
+                get_all_users,
+                get_all_roles,
+                get_all_rooms,
+                get_full_layout,
+                get_all_docs,
+                get_all_permissions,
+                hello,
+                index
+            ],
+        )
         .attach(Template::fairing())
 }
