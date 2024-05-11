@@ -4,7 +4,7 @@ use dotenv::dotenv;
 
 use crate::models::{
     permission_model::Permission, role_model::Role, room_model::Room, sdui_model::Sdui,
-    user_model::User,
+    session_model::Session, user_model::User,
 };
 // use chrono::{TimeZone, Utc};
 use mongodb::{
@@ -19,6 +19,7 @@ pub struct MongoRepo {
     usercol: Collection<User>,
     rolecol: Collection<Role>,
     permcol: Collection<Permission>,
+    sesscol: Collection<Session>,
     roomcol: Collection<Room>,
     sduicol: Collection<Sdui>,
     acolraw: Collection<Document>,
@@ -29,23 +30,25 @@ impl MongoRepo {
         dotenv().ok();
         let uri = match env::var("MONGOURI") {
             Ok(v) => v.to_string(),
-            Err(_) => format!("Error loading env variable"),
+            Err(_) => "Error loading env variable".to_owned(),
         };
         let cn = match env::var("COLLECTION") {
             Ok(v) => v.to_string(),
-            Err(_) => format!("Error loading env variable"),
+            Err(_) => "Error loading env variable".to_owned(),
         };
         let client = Client::with_uri_str(uri).unwrap();
         let db = client.database("rocketchat");
         let usercol: Collection<User> = db.collection("users");
         let rolecol: Collection<Role> = db.collection("rocketchat_roles");
         let permcol: Collection<Permission> = db.collection("rocketchat_permissions");
+        let sesscol: Collection<Session> = db.collection("rocketchat_sessions");
         let roomcol: Collection<Room> = db.collection("rocketchat_room");
         let sduicol: Collection<Sdui> = db.collection("rocketchat_settings");
         let acolraw: Collection<Document> = db.collection(&cn);
         MongoRepo {
             usercol,
             permcol,
+            sesscol,
             rolecol,
             roomcol,
             sduicol,
@@ -70,15 +73,24 @@ impl MongoRepo {
     }
     */
 
-    pub fn get_user(&self, id: &String) -> Result<User, Error> {
+    pub fn get_user(&self, id: &str) -> Result<User, Error> {
         // let obj_id = ObjectId::parse_str(id).unwrap();
         let filter = doc! {"_id": id};
         let user_detail = self
             .usercol
             .find_one(filter, None)
-            .ok()
             .expect("Error getting user's detail");
         Ok(user_detail.unwrap())
+    }
+
+    pub fn get_users_by_role(&self, id: &str) -> Result<Vec<User>, Error> {
+        let filter = doc! {"roles": { "$in": [id] } };
+        let cursors = self
+            .usercol
+            .find(filter, None)
+            .expect("Error getting list of users");
+        let users = cursors.map(|doc| doc.unwrap()).collect();
+        Ok(users)
     }
 
     pub fn get_all_users_obj(&self) -> Result<Vec<User>, Error> {
@@ -99,7 +111,6 @@ impl MongoRepo {
         let cursors = self
             .usercol
             .find(None, None)
-            .ok()
             .expect("Error getting list of users");
         let users = cursors.map(|doc| doc.unwrap()).collect();
         Ok(users)
@@ -119,7 +130,6 @@ impl MongoRepo {
         let cursors = self
             .roomcol
             .find(filter, find_options)
-            .ok()
             .expect("Error getting list of rooms");
         let rooms = cursors.map(|doc| doc.unwrap()).collect();
         Ok(rooms)
@@ -130,28 +140,38 @@ impl MongoRepo {
         let cursors = self
             .acolraw
             .find(None, None)
-            .ok()
             .expect("Error getting list of docs");
         let docs = cursors.map(|doc| doc.unwrap()).collect();
         Ok(docs)
+    }
+
+    pub fn get_sessions(&self, id: &str) -> Result<Vec<Session>, Error> {
+        let filter = doc! {"userId": id };
+        let find_options = FindOptions::builder()
+            .sort(doc! { "year": -1, "month": -1, "day": -1 })
+            .build();
+        let cursors = self
+            .sesscol
+            .find(filter, find_options)
+            .expect("Error getting list of sessions");
+        let sessions = cursors.map(|doc| doc.unwrap()).collect();
+        Ok(sessions)
     }
 
     pub fn get_all_roles(&self) -> Result<Vec<Role>, Error> {
         let cursors = self
             .rolecol
             .find(None, None)
-            .ok()
             .expect("Error getting list of roles");
         let roles = cursors.map(|doc| doc.unwrap()).collect();
         Ok(roles)
     }
 
-    pub fn get_role(&self, id: &String) -> Result<Role, Error> {
+    pub fn get_role(&self, id: &str) -> Result<Role, Error> {
         let filter = doc! {"_id": id};
         let role = self
             .rolecol
             .find_one(filter, None)
-            .ok()
             .expect("Error getting role's detail");
         Ok(role.unwrap())
     }
@@ -161,7 +181,6 @@ impl MongoRepo {
         let cursors = self
             .sduicol
             .find(filter, None)
-            .ok()
             .expect("Error getting list of layout elements");
         let layout = cursors.map(|doc| doc.unwrap()).collect();
         Ok(layout)
@@ -173,7 +192,6 @@ impl MongoRepo {
         let cursors = self
             .permcol
             .find(filter, None)
-            .ok()
             .expect("Error getting list of permissions");
         let permissions = cursors.map(|doc| doc.unwrap()).collect();
         Ok(permissions)

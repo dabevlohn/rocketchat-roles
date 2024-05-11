@@ -1,29 +1,26 @@
 <!-- templates/user.html -->
 
 <tr id="user-{{ user._id }}">
-    <td> <a href="/user/{{user._id}}"> {{ user._id }} </a></td>
-    <td id="username-{{user._id}}"> {{ user.username }} </td>
-    <td> 
+
+    <td hx-trigger="mouseenter"
+		hx-get="/user/{{user._id}}/email"
+		hx-target="#email-{{user._id}}">
+ 		 <a href="/user/{{user._id}}"> {{ user.username }} </a>
 		{% if user.name is defined %}
-				{{user.name}} 
+		<span id="email-{{user._id}}">
+			({{user.name}}) 
+		</span>
 		{% endif %}
     </td>
+
     <td> 
 		{% if user.roles is defined %}
-				{% for e in user.roles %} <a href="/role/{{e}}">{{e}}</a> {% endfor %}
+			{% for r in user.roles %}
+			<a href="/users/role/{{r}}">{{r}}</a> 
+			{% endfor %}
 		{% endif %}
 	</td>
-    <td hx-trigger="load delay:2s"
-		hx-get="/user/{{user._id}}/email"
-		hx-target="#email-{{user._id}}"> 
 
-		<span id="email-{{user._id}}">
-		loading...
-		{% if user.emails is object %}
-				{% for e in user.emails %} {{e.address}} {% endfor %}
-		{% endif %}
-		</span>
-	</td>
     <td hx-trigger="every 5s"
 		hx-get="/user/{{user._id}}/status"
 		hx-target="#status-{{user._id}}"> 

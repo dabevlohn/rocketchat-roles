@@ -1,0 +1,35 @@
+<!-- templates/sess.html -->
+<tr>
+
+    <td> 
+		{#session._id#} 
+		{% if sess.host is string %}{{sess.host}} 
+		{% else %}---
+		{% endif %}
+		{% if sess.mostImportantRole is string %} {{sess.mostImportantRole}}
+		{% else %}---
+		{% endif %}
+    </td>
+
+    <td> 
+		{{sess.day}}-{{sess.month}}-{{sess.year}}
+		{#
+		{% if sess.createdAt is defined %}
+		{{sess.createdAt}}
+		{% endif %}
+		{% if sess._updatedAt is defined %}
+		{{sess._updatedAt}}
+		{% endif %}
+		{% if sess.lastActivityAt is defined %}
+		{{sess.lastActivityAt}}
+		{% endif %}
+		#}
+	</td>
+
+    <td>
+		{% if sess.searchTerm is string %} <span> {{sess.searchTerm}} </span>
+		{% else %}---
+		{% endif %}
+	</td>
+</tr>
+

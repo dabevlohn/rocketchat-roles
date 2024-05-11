@@ -3,14 +3,19 @@
 <html lang="en">
 <head>
     <script src="/js/htmx-1.9.12.js"></script>
-	<link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/style.css">
     <title>Index</title>
     {% block head %}{% endblock head %}
 </head>
-    <body>
-        <div id="content">
-				{% block content %}
-				{% endblock content%}
+<body>
+    <div id="main">
+        <div id="nav">
+            {% include "nav" %}
         </div>
-    </body>
+        <div id="content">
+            {% block content %}
+            {% endblock content%}
+        </div>
+    </div>
+</body>
 </html>

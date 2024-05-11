@@ -35,7 +35,7 @@ pub struct Email {
 #[derive(Debug, Serialize, Deserialize)]
 pub struct User {
     #[serde(rename = "_id")]
-    id: String,
+    pub id: String,
     username: String,
     name: Option<String>,
     roles: Vec<String>,

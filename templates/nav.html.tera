@@ -1,0 +1,11 @@
+<!-- templates/nav.html -->
+<div id="navlist">
+<span><a href="/"> Home </a></span>
+{% if roles is defined %}
+	{% for r in roles %} 
+	<span id="role-{{r._id}}">
+		<a href="/users/role/{{r._id}}">{{r.name}}</a> 
+	</span>
+	{% endfor %}
+{% endif %}
+</div>

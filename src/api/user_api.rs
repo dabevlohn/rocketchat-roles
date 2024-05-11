@@ -9,7 +9,7 @@ pub fn index(db: &State<MongoRepo>) -> Template {
     let users = db.get_all_users_obj();
     match users {
         Ok(users) => Template::render("index", context! { users: users }),
-        Err(_) => Template::render("error/404", context! { uri: "" }),
+        Err(_) => Template::render("404", context! { uri: "" }),
     }
 }
 
@@ -34,25 +34,34 @@ pub fn create_user(
 */
 
 #[get("/user/<path>")]
-pub fn get_user(db: &State<MongoRepo>, path: String) -> Result<Json<User>, Status> {
+pub fn get_user(db: &State<MongoRepo>, path: &str) -> Template {
     let id = path;
     if id.is_empty() {
-        return Err(Status::BadRequest);
+        return Template::render("404", context! { uri: "" });
     };
-    let user_detail = db.get_user(&id);
+    let user_detail = db.get_user(id);
     match user_detail {
-        Ok(user) => Ok(Json(user)),
-        Err(_) => Err(Status::InternalServerError),
+        Ok(user_detail) => {
+            let sessions = db.get_sessions(id);
+            match sessions {
+                Ok(sessions) => Template::render(
+                    "user_detail",
+                    context! { user: user_detail, sessions: sessions },
+                ),
+                Err(_) => Template::render("404", context! { uri: "" }),
+            }
+        }
+        Err(_) => Template::render("404", context! { uri: "" }),
     }
 }
 
 #[get("/user/<path>/status")]
-pub fn get_user_status(db: &State<MongoRepo>, path: String) -> Result<String, Status> {
+pub fn get_user_status(db: &State<MongoRepo>, path: &str) -> Result<String, Status> {
     let id = path;
     if id.is_empty() {
         return Err(Status::BadRequest);
     };
-    let user = db.get_user(&id);
+    let user = db.get_user(id);
     match user {
         Ok(user) => Ok(user.status.to_string()),
         Err(_) => Err(Status::InternalServerError),
@@ -60,12 +69,12 @@ pub fn get_user_status(db: &State<MongoRepo>, path: String) -> Result<String, St
 }
 
 #[get("/user/<path>/email")]
-pub fn get_user_email(db: &State<MongoRepo>, path: String) -> Result<String, Status> {
+pub fn get_user_email(db: &State<MongoRepo>, path: &str) -> Result<String, Status> {
     let id = path;
     if id.is_empty() {
         return Err(Status::BadRequest);
     };
-    let user = db.get_user(&id);
+    let user = db.get_user(id);
     match user {
         Ok(user) => Ok(if let Some(email) = user.emails.unwrap().first() {
             email.address.to_string()
@@ -82,5 +91,18 @@ pub fn get_all_users(db: &State<MongoRepo>) -> Result<Json<Vec<User>>, Status> {
     match users {
         Ok(users) => Ok(Json(users)),
         Err(_) => Err(Status::InternalServerError),
+    }
+}
+
+#[get("/users/role/<path>")]
+pub fn get_users_by_role(db: &State<MongoRepo>, path: &str) -> Template {
+    let id = path;
+    if id.is_empty() {
+        return Template::render("404", context! { uri: "" });
+    };
+    let users = db.get_users_by_role(id);
+    match users {
+        Ok(users) => Template::render("index", context! { users: users }),
+        Err(_) => Template::render("404", context! { uri: "" }),
     }
 }
