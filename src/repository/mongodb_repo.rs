@@ -167,7 +167,7 @@ impl MongoRepo {
         Ok(roles)
     }
 
-    pub fn get_role(&self, id: &str) -> Result<Role, Error> {
+    pub fn get_role_obj(&self, id: &str) -> Result<Role, Error> {
         let filter = doc! {"_id": id};
         let role = self
             .rolecol

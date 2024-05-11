@@ -19,7 +19,7 @@ impl LocalRepo {
         dotenv().ok();
         let uri = match env::var("LOCALURI") {
             Ok(v) => v.to_string(),
-            Err(_) => format!("Error loading env variable"),
+            Err(_) => "Error loading env variable".to_owned(),
         };
         let client = Client::with_uri_str(uri).unwrap();
         let db = client.database("mkbadmin");
