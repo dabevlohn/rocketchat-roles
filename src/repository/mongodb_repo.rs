@@ -6,7 +6,7 @@ use crate::models::{
     permission_model::Permission, role_model::Role, room_model::Room, sdui_model::Sdui,
     session_model::Session, user_model::User,
 };
-// use chrono::{TimeZone, Utc};
+use chrono::{TimeZone, Utc};
 use mongodb::{
     bson::extjson::de::Error,
     bson::{doc, Document},
@@ -94,7 +94,6 @@ impl MongoRepo {
     }
 
     pub fn get_all_users_obj(&self) -> Result<Vec<User>, Error> {
-        /*
         let trashold = Utc.ymd(2024, 1, 1).and_hms_opt(0, 0, 0);
         let filter = doc! { "$nor": [
             { "roles": { "$exists": false } },
@@ -107,10 +106,9 @@ impl MongoRepo {
             { "lastLogin": { "$lt": trashold } },
             { "emails.verified": false }
         ] };
-        */
         let cursors = self
             .usercol
-            .find(None, None)
+            .find(filter, None)
             .expect("Error getting list of users");
         let users = cursors.map(|doc| doc.unwrap()).collect();
         Ok(users)
