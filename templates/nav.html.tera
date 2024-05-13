@@ -1,10 +1,11 @@
-<!-- templates/nav.html -->
 <div id="navlist">
+<!-- templates/nav.html -->
 <span><a href="/"> Home </a></span>
-{% if roles is defined %}
-	{% for r in roles %} 
-	<span id="role-{{r._id}}">
-		<a href="/users/role/{{r._id}}">{{r.name}}</a> 
+{% if services is defined %}
+ SmartApps: 
+	{% for s in services %} 
+	<span id="service-{{s._id}}">
+		<a href="{{s.uri}}">{{s.name}}</a> 
 	</span>
 	{% endfor %}
 {% endif %}

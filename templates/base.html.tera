@@ -1,4 +1,3 @@
-<!-- templates/base.html -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -9,6 +8,7 @@
     <title>Index</title>
     {% block head %}{% endblock head %}
 </head>
+<!-- templates/base.html -->
 <body>
     <div id="main">
         <div id="nav">

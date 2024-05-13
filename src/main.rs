@@ -14,6 +14,7 @@ use api::{
     role_api::{get_all_roles, get_role},
     room_api::get_all_rooms,
     sdui_api::get_full_layout,
+    service_api::get_all_services,
     user_api::{
         get_all_users, get_user, get_user_email, get_user_status, get_users_by_role, index,
     },
@@ -35,15 +36,17 @@ fn hello() -> Result<Json<String>, Status> {
 
 #[launch]
 fn rocket() -> _ {
-    let _ldb = LocalRepo::init();
-    let mdb = MongoRepo::init();
+    let ldb = LocalRepo::init();
+    let db = MongoRepo::init();
     rocket::build()
-        .manage(mdb)
+        .manage(ldb)
+        .manage(db)
         .mount("/", FileServer::from(relative!("static")))
         .mount(
             "/",
             routes![
                 get_user,
+                get_all_services,
                 get_user_email,
                 get_user_status,
                 get_role,

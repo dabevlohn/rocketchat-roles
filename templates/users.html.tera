@@ -1,5 +1,5 @@
-<!-- templates/users.html -->
 <h1 class="text-3xl font-bold underline">Users</h1>
+<!-- templates/users.html -->
 <div id="users">
 <table>
     <thead>
