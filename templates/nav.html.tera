@@ -1,12 +1,14 @@
-<div id="navlist">
 <!-- templates/nav.html -->
-<span><a href="/"> Home </a></span>
+<nav>
+  <ul>
+    <li><strong><a href="/"> Home </a></strong></li>
 {% if services is defined %}
- SmartApps: 
+	<li>SmartApps:</li>
 	{% for s in services %} 
-	<span id="service-{{s._id}}">
+	<li id="service-{{s._id}}">
 		<a href="{{s.uri}}">{{s.name}}</a> 
-	</span>
+	</li>
 	{% endfor %}
+  </ul>
 {% endif %}
-</div>
+</nav>

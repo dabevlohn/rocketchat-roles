@@ -2,7 +2,7 @@
 
 <tr id="user-{{ user._id }}">
 
-    <td hx-trigger="mouseenter"
+    <th scope="row" hx-trigger="mouseenter"
 		hx-get="/user/{{user._id}}/email"
 		hx-target="#email-{{user._id}}">
  		 <a href="/user/{{user._id}}"> {{ user.username }} </a>

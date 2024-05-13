@@ -1,12 +1,25 @@
 <h1 class="text-3xl font-bold underline">Users</h1>
 <!-- templates/users.html -->
 <div id="users">
-<table>
+<table class="striped">
     <thead>
         <tr>
-            <th>Username</th>
-            <th>Roles</th>
-            <th>Status</th>
+            <th scope="col">Username</th>
+            <th scope="col">
+                {% if roles is defined %}
+                <details class="dropdown">
+                    <summary>Roles</summary>
+                    <ul>
+                        {% for r in roles %}
+                        <li><a href="/users/role/{{ r._id }}">{{ r.name }}</a></li>
+                        {% endfor %}
+                    </ul>
+                </details>
+                {% else %}
+                Roles
+                {% endif %}
+            </th>
+            <th scope="col">Status</th>
         </tr>
     </thead>
     <tbody id="users-content">
