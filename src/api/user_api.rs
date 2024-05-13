@@ -1,14 +1,25 @@
-use crate::{models::user_model::User, repository::mongodb_repo::MongoRepo};
+use crate::{
+    models::user_model::User,
+    repository::{localdb_repo::LocalRepo, mongodb_repo::MongoRepo},
+};
 use rocket::{http::Status, serde::json::Json, State};
 // use mongodb::bson::Document;
 // use mongodb::results::InsertOneResult;
 use rocket_dyn_templates::{context, Template};
 
 #[get("/")]
-pub fn index(db: &State<MongoRepo>) -> Template {
+pub fn index(db: &State<MongoRepo>, ldb: &State<LocalRepo>) -> Template {
     let users = db.get_all_users_obj();
     match users {
-        Ok(users) => Template::render("index", context! { users: users }),
+        Ok(users) => {
+            let services = ldb.get_all_services();
+            match services {
+                Ok(services) => {
+                    Template::render("index", context! { users: users, services: services })
+                }
+                Err(_) => Template::render("404", context! { uri: "" }),
+            }
+        }
         Err(_) => Template::render("404", context! { uri: "" }),
     }
 }
@@ -95,14 +106,22 @@ pub fn get_all_users(db: &State<MongoRepo>) -> Result<Json<Vec<User>>, Status> {
 }
 
 #[get("/users/role/<path>")]
-pub fn get_users_by_role(db: &State<MongoRepo>, path: &str) -> Template {
+pub fn get_users_by_role(db: &State<MongoRepo>, ldb: &State<LocalRepo>, path: &str) -> Template {
     let id = path;
     if id.is_empty() {
         return Template::render("404", context! { uri: "" });
     };
     let users = db.get_users_by_role(id);
     match users {
-        Ok(users) => Template::render("index", context! { users: users }),
+        Ok(users) => {
+            let services = ldb.get_service_by_role(id);
+            match services {
+                Ok(services) => {
+                    Template::render("index", context! { users: users, services: services })
+                }
+                Err(_) => Template::render("404", context! { uri: "" }),
+            }
+        }
         Err(_) => Template::render("404", context! { uri: "" }),
     }
 }

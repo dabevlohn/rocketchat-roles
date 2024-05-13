@@ -4,6 +4,7 @@ use dotenv::dotenv;
 
 use crate::models::setting_model::InternalService;
 use mongodb::{
+    bson::doc,
     bson::extjson::de::Error,
     // results::InsertOneResult,
     sync::{Client, Collection},
@@ -79,6 +80,16 @@ impl LocalRepo {
         let cursors = self
             .servcol
             .find(None, None)
+            .expect("Error getting list of services");
+        let services = cursors.map(|doc| doc.unwrap()).collect();
+        Ok(services)
+    }
+
+    pub fn get_service_by_role(&self, id: &str) -> Result<Vec<InternalService>, Error> {
+        let filter = doc! {"roles": { "$in": [id] } };
+        let cursors = self
+            .servcol
+            .find(filter, None)
             .expect("Error getting list of services");
         let services = cursors.map(|doc| doc.unwrap()).collect();
         Ok(services)
