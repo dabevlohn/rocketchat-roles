@@ -6,7 +6,7 @@ use crate::models::setting_model::InternalService;
 use mongodb::{
     bson::doc,
     bson::extjson::de::Error,
-    // results::InsertOneResult,
+    results::InsertOneResult,
     sync::{Client, Collection},
 };
 
@@ -23,7 +23,7 @@ impl LocalRepo {
             Err(_) => "Error loading env variable".to_owned(),
         };
         let client = Client::with_uri_str(uri).unwrap();
-        let db = client.database("mkbadmin");
+        let db = client.database("rocketchat");
         // let setcol: Collection<Setting> = db.collection("settings");
         let servcol: Collection<InternalService> = db.collection("services");
         LocalRepo {
@@ -60,20 +60,20 @@ impl LocalRepo {
     }
     */
 
-    // pub fn create_service(&self) -> Result<InsertOneResult, Error> {
-    //     let new_doc = InternalService {
-    //         id: None,
-    //         name: "CorpPortal1".to_string(),
-    //         uri: "https://mcb.ru/".to_string(),
-    //         roles: vec!["user".to_string(), "admin".to_string()],
-    //         active: true,
-    //     };
-    //     let service = self
-    //         .servcol
-    //         .insert_one(new_doc, None)
-    //         .expect("Error creating service");
-    //     Ok(service)
-    // }
+    pub fn create_service(&self) -> Result<InsertOneResult, Error> {
+         let new_doc = InternalService {
+             id: None,
+             name: "CorpPortal".to_string(),
+             uri: "https://mkb.ru/".to_string(),
+             roles: vec!["admin".to_string()],
+             active: true,
+         };
+         let service = self
+             .servcol
+             .insert_one(new_doc, None)
+             .expect("Error creating service");
+         Ok(service)
+    }
 
     pub fn get_all_services(&self) -> Result<Vec<InternalService>, Error> {
         // let _ = self.create_service();
