@@ -2,16 +2,16 @@ use std::env;
 extern crate dotenv;
 use dotenv::dotenv;
 
-use crate::models::setting_model::Setting;
+use crate::models::setting_model::InternalService;
 use mongodb::{
-    // bson::extjson::de::Error,
+    bson::extjson::de::Error,
     // results::InsertOneResult,
     sync::{Client, Collection},
 };
 
-#[allow(dead_code)]
 pub struct LocalRepo {
-    setcol: Collection<Setting>,
+    // setcol: Collection<Setting>,
+    servcol: Collection<InternalService>,
 }
 
 impl LocalRepo {
@@ -23,8 +23,12 @@ impl LocalRepo {
         };
         let client = Client::with_uri_str(uri).unwrap();
         let db = client.database("mkbadmin");
-        let setcol: Collection<Setting> = db.collection("settings");
-        LocalRepo { setcol }
+        // let setcol: Collection<Setting> = db.collection("settings");
+        let servcol: Collection<InternalService> = db.collection("services");
+        LocalRepo {
+            // setcol,
+            servcol,
+        }
     }
 
     /*
@@ -54,4 +58,29 @@ impl LocalRepo {
         Ok(users)
     }
     */
+
+    // pub fn create_service(&self) -> Result<InsertOneResult, Error> {
+    //     let new_doc = InternalService {
+    //         id: None,
+    //         name: "CorpPortal1".to_string(),
+    //         uri: "https://mcb.ru/".to_string(),
+    //         roles: vec!["user".to_string(), "admin".to_string()],
+    //         active: true,
+    //     };
+    //     let service = self
+    //         .servcol
+    //         .insert_one(new_doc, None)
+    //         .expect("Error creating service");
+    //     Ok(service)
+    // }
+
+    pub fn get_all_services(&self) -> Result<Vec<InternalService>, Error> {
+        // let _ = self.create_service();
+        let cursors = self
+            .servcol
+            .find(None, None)
+            .expect("Error getting list of services");
+        let services = cursors.map(|doc| doc.unwrap()).collect();
+        Ok(services)
+    }
 }

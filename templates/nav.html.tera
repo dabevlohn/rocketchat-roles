@@ -1,5 +1,5 @@
-<!-- templates/nav.html -->
 <div id="navlist">
+<!-- templates/nav.html -->
 <span><a href="/"> Home </a></span>
 {% if roles is defined %}
 	{% for r in roles %} 
