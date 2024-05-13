@@ -8,15 +8,13 @@ use rocket::{http::Status, serde::json::Json, State};
 use rocket_dyn_templates::{context, Template};
 
 #[get("/")]
-pub fn index(db: &State<MongoRepo>, ldb: &State<LocalRepo>) -> Template {
+pub fn index(db: &State<MongoRepo>) -> Template {
     let users = db.get_all_users_obj();
     match users {
         Ok(users) => {
-            let services = ldb.get_all_services();
-            match services {
-                Ok(services) => {
-                    Template::render("index", context! { users: users, services: services })
-                }
+            let roles = db.get_all_roles();
+            match roles {
+                Ok(roles) => Template::render("index", context! { users: users,roles: roles}),
                 Err(_) => Template::render("404", context! { uri: "" }),
             }
         }
