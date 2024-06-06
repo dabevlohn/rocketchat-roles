@@ -1,1 +1,5 @@
 /target
+.env
+/results
+/node_modules
+/static/src

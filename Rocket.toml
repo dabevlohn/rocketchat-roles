@@ -9,6 +9,7 @@ key = "a default app-key"
 extra = false
 ident = "Rocket"
 ip_header = "CF-Connecting-IP"
+template_dir = "templates"
 
 [debug]
 address = "127.0.0.1"

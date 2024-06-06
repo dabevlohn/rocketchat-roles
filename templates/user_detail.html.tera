@@ -1,0 +1,23 @@
+{% extends "base" %}
+<!-- templates/user_detail.html -->
+
+{% block content %}
+<h1>User {{ user.username }} </h1>
+<div id="user-{{ user._id }}">
+<h3>Sessions</h3>
+	<table>
+	    <thead>
+	        <tr>
+	            <th>ID, Host, role</th>
+	            <th>Dates</th>
+	            <th>SearchTerm</th>
+	        </tr>
+	    </thead>
+	    <tbody id="sessions-content">
+	        {% for sess in sessions %}
+				{% include "sess" %}
+	        {% endfor %}
+	    </tbody>
+	</table>
+</div>
+{% endblock content %}

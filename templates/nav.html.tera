@@ -1,0 +1,14 @@
+<!-- templates/nav.html -->
+<nav>
+  <ul>
+    <li><strong><a href="/"> Home </a></strong></li>
+{% if services is defined %}
+	<li>SmartApps:</li>
+	{% for s in services %} 
+	<li id="service-{{s._id}}">
+		<a href="{{s.uri}}">{{s.name}}</a> 
+	</li>
+	{% endfor %}
+  </ul>
+{% endif %}
+</nav>

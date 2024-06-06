@@ -8,84 +8,85 @@ extern crate rocket;
 #[cfg(test)]
 mod tests;
 
-use api::permission_api::get_all_permissions;
-use api::role_api::get_all_roles;
-use api::user_api::{get_all_users, get_user};
-use repository::localdb_repo::LocalRepo;
-use repository::mongodb_repo::MongoRepo;
-use rocket::fairing::AdHoc;
-use rocket::serde::Deserialize;
-use rocket::{get, http::Status, serde::json::Json};
+use crate::models::role_model;
+use api::{
+    permission_api::get_all_permissions,
+    rawdoc_api::get_all_docs,
+    role_api,
+    room_api::get_all_rooms,
+    sdui_api::get_full_layout,
+    service_api::get_all_services,
+    user_api::{
+        get_all_users, get_user, get_user_email, get_user_status, get_users_by_role, index,
+    },
+};
+use repository::{localdb_repo::LocalRepo, mongodb_repo::MongoRepo};
+use rocket::{
+    fs::{relative, FileServer},
+    get,
+    http::Status,
+    serde::json::Json,
+};
+use rocket_dyn_templates::Template;
+use utoipa::OpenApi;
+use utoipa_rapidoc::RapiDoc;
+use utoipa_redoc::{Redoc, Servable};
+use utoipa_swagger_ui::SwaggerUi;
 
-#[derive(Debug, Deserialize)]
-#[serde(crate = "rocket::serde")]
-#[allow(dead_code)]
-struct AppConfig {
-    key: String,
-    port: u16,
-}
-
-#[get("/")]
+// for test only
+#[get("/hello")]
 fn hello() -> Result<Json<String>, Status> {
     Ok(Json(String::from("Hello world")))
 }
 
+#[derive(OpenApi)]
+#[openapi(
+    paths(
+        role_api::get_all_roles,
+        role_api::get_role,
+    ),
+    components(
+        schemas(role_model::Role)
+    ),
+    tags(
+        (name = "Role", description = "Role management endpoints.")
+    ),
+    // modifiers(&SecurityAddon)
+)]
+struct ApiDoc;
+
 #[launch]
 fn rocket() -> _ {
-    let _ldb = LocalRepo::init();
-    let mdb = MongoRepo::init();
+    let ldb = LocalRepo::init();
+    let db = MongoRepo::init();
     rocket::build()
-        .manage(mdb)
-        .mount("/", routes![get_user])
-        .mount("/", routes![get_all_users])
-        .mount("/", routes![get_all_roles])
-        .mount("/", routes![get_all_permissions])
-        .mount("/", routes![hello])
-        .attach(AdHoc::config::<AppConfig>())
+        .manage(ldb)
+        .manage(db)
+        .mount("/", FileServer::from(relative!("static")))
+        .mount(
+            "/",
+            SwaggerUi::new("/swagger-ui/<_..>").url("/api-docs/openapi.json", ApiDoc::openapi()),
+        )
+        .mount("/", RapiDoc::new("/api-docs/openapi.json").path("/rapidoc"))
+        .mount("/", Redoc::with_url("/redoc", ApiDoc::openapi()))
+        .mount(
+            "/",
+            routes![
+                get_user,
+                get_all_services,
+                get_user_email,
+                get_user_status,
+                role_api::get_role,
+                get_all_users,
+                get_users_by_role,
+                role_api::get_all_roles,
+                get_all_rooms,
+                get_full_layout,
+                get_all_docs,
+                get_all_permissions,
+                hello,
+                index
+            ],
+        )
+        .attach(Template::fairing())
 }
-
-/*
-#[derive(Debug, Serialize, Deserialize)]
-struct Session {
-    host: String,
-    roles: Vec<String>,
-    #[serde(rename = "userId")]
-    user_id: String,
-    #[serde(rename = "loginToken")]
-    login_token: String,
-    #[serde(rename = "mostImportantRole")]
-    most_important_role: String,
-    #[serde(
-        rename = "loginAt",
-        with = "bson::serde_helpers::chrono_datetime_as_bson_datetime"
-    )]
-    login_at: chrono::DateTime<Utc>,
-}
-
-#[derive(Debug, Serialize, Deserialize)]
-struct Role {
-    #[serde(rename = "_id")]
-    id: String,
-    // #[serde(rename = "_id", skip_serializing_if = "Option::is_none")]
-    // id: Option<ObjectId>,
-    scope: String,
-    name: String,
-}
-
-#[derive(Debug, Serialize, Deserialize)]
-struct Permission {
-    #[serde(rename = "_id")]
-    id: String,
-    roles: Vec<String>,
-}
-
-#[derive(Debug, Serialize, Deserialize)]
-struct User {
-    #[serde(rename = "_id")]
-    id: String,
-    roles: Vec<String>,
-    status: String,
-    username: String,
-    active: bool,
-}
-*/

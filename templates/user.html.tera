@@ -1,0 +1,32 @@
+<!-- templates/user.html -->
+
+<tr id="user-{{ user._id }}">
+
+    <th scope="row" hx-trigger="mouseenter"
+		hx-get="/user/{{user._id}}/email"
+		hx-target="#email-{{user._id}}">
+ 		 <a href="/user/{{user._id}}"> {{ user.username }} </a>
+		{% if user.name is defined %}
+		<span id="email-{{user._id}}">
+			({{user.name}}) 
+		</span>
+		{% endif %}
+    </td>
+
+    <td> 
+		{% if user.roles is defined %}
+			{% for r in user.roles %}
+			<a href="/users/role/{{r}}">{{r}}</a> 
+			{% endfor %}
+		{% endif %}
+	</td>
+
+    <td hx-trigger="every 5s"
+		hx-get="/user/{{user._id}}/status"
+		hx-target="#status-{{user._id}}"> 
+
+		<span id="status-{{user._id}}">
+		{{user.status}}
+		</span>
+	</td>
+</tr>
