@@ -1,6 +1,10 @@
-# Create custom views for RocketChat database collections (Mongo) 
+# Create custom views for RocketChat database collections (Mongo)
 
 We use Rocket :) web framework written in Rust
+
+Now we have OpenAPI for roles (thanks to `juhaku / utoipa`) and web interface using HTMX and Tera templates.
+
+---
 
 ```shell
 curl http://localhost:8000/users/ | jq

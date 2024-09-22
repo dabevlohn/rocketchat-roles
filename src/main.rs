@@ -8,10 +8,11 @@ extern crate rocket;
 #[cfg(test)]
 mod tests;
 
+use crate::models::role_model;
 use api::{
     permission_api::get_all_permissions,
     rawdoc_api::get_all_docs,
-    role_api::{get_all_roles, get_role},
+    role_api,
     room_api::get_all_rooms,
     sdui_api::get_full_layout,
     service_api::get_all_services,
@@ -27,12 +28,32 @@ use rocket::{
     serde::json::Json,
 };
 use rocket_dyn_templates::Template;
+use utoipa::OpenApi;
+use utoipa_rapidoc::RapiDoc;
+use utoipa_redoc::{Redoc, Servable};
+use utoipa_swagger_ui::SwaggerUi;
 
 // for test only
 #[get("/hello")]
 fn hello() -> Result<Json<String>, Status> {
     Ok(Json(String::from("Hello world")))
 }
+
+#[derive(OpenApi)]
+#[openapi(
+    paths(
+        role_api::get_all_roles,
+        role_api::get_role,
+    ),
+    components(
+        schemas(role_model::Role)
+    ),
+    tags(
+        (name = "Role", description = "Role management endpoints.")
+    ),
+    // modifiers(&SecurityAddon)
+)]
+struct ApiDoc;
 
 #[launch]
 fn rocket() -> _ {
@@ -44,15 +65,21 @@ fn rocket() -> _ {
         .mount("/", FileServer::from(relative!("static")))
         .mount(
             "/",
+            SwaggerUi::new("/swagger-ui/<_..>").url("/api-docs/openapi.json", ApiDoc::openapi()),
+        )
+        .mount("/", RapiDoc::new("/api-docs/openapi.json").path("/rapidoc"))
+        .mount("/", Redoc::with_url("/redoc", ApiDoc::openapi()))
+        .mount(
+            "/",
             routes![
                 get_user,
                 get_all_services,
                 get_user_email,
                 get_user_status,
-                get_role,
+                role_api::get_role,
                 get_all_users,
                 get_users_by_role,
-                get_all_roles,
+                role_api::get_all_roles,
                 get_all_rooms,
                 get_full_layout,
                 get_all_docs,
