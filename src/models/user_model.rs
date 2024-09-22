@@ -57,7 +57,7 @@ pub struct User {
     #[serde(rename = "type")]
     utype: Option<String>,
     #[serde(rename = "createdAt")]
-    created_at: DateTime,
+    created_at: Option<DateTime>,
     #[serde(rename = "lastLogin")]
     last_login: Option<DateTime>,
     #[serde(rename = "_updatedAt")]

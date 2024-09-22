@@ -1,4 +1,6 @@
 use std::env;
+use std::fs::File;
+use std::io::Write;
 extern crate dotenv;
 use dotenv::dotenv;
 
@@ -6,10 +8,10 @@ use crate::models::{
     permission_model::Permission, role_model::Role, room_model::Room, sdui_model::Sdui,
     session_model::Session, user_model::User,
 };
-// use chrono::{TimeZone, Utc};
+use chrono::{TimeZone, Utc};
 use mongodb::{
     bson::extjson::de::Error,
-    bson::{doc, Document},
+    bson::{doc, Document, Bson},
     options::FindOptions,
     sync::{Client, Collection},
     //    results::InsertOneResult,
@@ -94,7 +96,6 @@ impl MongoRepo {
     }
 
     pub fn get_all_users_obj(&self) -> Result<Vec<User>, Error> {
-        /*
         let trashold = Utc.ymd(2024, 1, 1).and_hms_opt(0, 0, 0);
         let filter = doc! { "$nor": [
             { "roles": { "$exists": false } },
@@ -107,10 +108,9 @@ impl MongoRepo {
             { "lastLogin": { "$lt": trashold } },
             { "emails.verified": false }
         ] };
-        */
         let cursors = self
             .usercol
-            .find(None, None)
+            .find(filter, None)
             .expect("Error getting list of users");
         let users = cursors.map(|doc| doc.unwrap()).collect();
         Ok(users)
@@ -137,10 +137,23 @@ impl MongoRepo {
 
     pub fn get_all_docs(&self) -> Result<Vec<Document>, Error> {
         // let filter = doc! { "$nor": [ { "year": 2023 }, { "year": 2022 }, { "month": 3 }, { "day": 3 } ]};
-        let cursors = self
+        let filter = doc! { "u.username": { "$not": {"$regex": "^zabbix.*"} }, "attachments": { "$exists": true } };
+        let find_options = FindOptions::builder()
+            .limit(1000000)
+            .build();
+        let mut cursors = self
             .acolraw
-            .find(None, None)
+            .find(filter, find_options)
             .expect("Error getting list of docs");
+        let mut fl = File::create("messages.json").expect("cannot create file");
+        while let Some(result) = cursors.next() {
+            let doc = result.expect("no messages");
+            //let msg: Document = bson::from_bson(Bson::Document(doc)).expect("conversion failed"); 
+            let mut s: String = serde_json::to_string(&doc).unwrap();
+            // println!("{:?}", s);
+            s += "\n";
+            fl.write_all(s.as_bytes()).expect("cannot write to file");
+        }
         let docs = cursors.map(|doc| doc.unwrap()).collect();
         Ok(docs)
     }
